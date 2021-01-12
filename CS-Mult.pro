@@ -8,7 +8,7 @@ QT += network \
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CS-English
+TARGET = CS-Mult
 TEMPLATE = app
 SOURCES += main.cpp \
 	mainwindow.cpp \

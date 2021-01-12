@@ -572,20 +572,20 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 		year1 += 1;
 	QString kon_nendo = "2020"; //QString::number(year1);
 
-	if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 ){
-		QDate today;
-		today.setDate(QDate::currentDate().year(),QDate::currentDate().month(),QDate::currentDate().day());
-		int day2 = onair.daysTo(QDate::currentDate())-today.dayOfWeek();
+//	if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 ){
+//		QDate today;
+//		today.setDate(QDate::currentDate().year(),QDate::currentDate().month(),QDate::currentDate().day());
+//		int day2 = onair.daysTo(QDate::currentDate())-today.dayOfWeek();
 //		if ( ui->toolButton_vrradio->isChecked() ) {
 //			if ( day2 > 7 || day2 < 0 ) return false;
 //		}
-		if ( ui->toolButton_vrradio->isChecked() ) {
-			if ( day2 > 0 || day2 < -7 ) return false;
-		}
+//		if ( ui->toolButton_vrradio->isChecked() ) {
+//			if ( day2 > 0 || day2 < -7 ) return false;
+//		}
 //		if ( ui->toolButton_vrradio->isChecked() ) {
 //			if ( !QString::compare( kon_nendo , nendo ) == 0 ) return false;
 //		}
-	}
+//	}
 	
 	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
@@ -693,19 +693,27 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 
 
 QString DownloadThread::paths[] = {
+	"french/kouza", "french/kouza2", "german/kouza", "german/kouza2",
+	"spanish/kouza", "spanish/kouza2", "italian/kouza", "italian/kouza2",
+	"russian/kouza","russian/kouza2", "chinese/kouza", "chinese/stepup",
 	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
-	"english/timetrial", "english/kaiwa", "english/business1",
-	"english/business2", "english/gakusyu", "english/gendai", "english/enjoy", 
-	"english/vr-radio"
+	"english/kaiwa", "english/gakusyu", "english/business1", "english/business2", 
+	"english/gendai", "english/enjoy"
 };
 
 
 void DownloadThread::run() {
 	QAbstractButton* checkbox[] = {
+		ui->toolButton_french, ui->toolButton_french2, 
+		ui->toolButton_german, ui->toolButton_german2,
+		ui->toolButton_spanish, ui->toolButton_spanish2,
+		ui->toolButton_italian, ui->toolButton_italian2,
+		ui->toolButton_russian, ui->toolButton_russian2,
+		ui->toolButton_chinese, ui->toolButton_stepup_chinese, 
 		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2, ui->toolButton_basic3,
-		ui->toolButton_timetrial, ui->toolButton_kaiwa, ui->toolButton_business1,
-		ui->toolButton_business2, ui->toolButton_gakusyu, ui->toolButton_gendai, ui->toolButton_enjoy,
-		ui->toolButton_vrradio,
+		ui->toolButton_kaiwa, ui->toolButton_gakusyu, 
+		ui->toolButton_business1, ui->toolButton_business2,
+		ui->toolButton_gendai, ui->toolButton_enjoy,
 		NULL
 	};
 
