@@ -1,13 +1,13 @@
-### CS-English
-ストリーミングで公開されているNHKラジオ語学講座の英語講座に特化し、ダウンロードを自動化するためのツールです。 開発が中断しているhttps://osdn.net/projects/capturestream/  の派生版ですが、機能は限定しており、名称も変更しました。名称変更した理由などは『[名称変更について](https://github.com/CSReviser/CaptureStream/wiki/%E5%90%8D%E7%A7%B0%E5%A4%89%E6%9B%B4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)』のページをご覧下さい。開発を引き継いだものではありません。                            
+### CS-Mult
+ストリーミングで公開されているNHKラジオ語学講座の英語以外の講座に特化し、ダウンロードを自動化するためのツールです。 開発が中断しているhttps://osdn.net/projects/capturestream/  の派生版ですが、機能は限定しており、名称も変更しました。名称変更した理由などは『[名称変更について](https://github.com/CSReviser/CaptureStream/wiki/%E5%90%8D%E7%A7%B0%E5%A4%89%E6%9B%B4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)』のページをご覧下さい。開発を引き継いだものではありません。                            
 ファイル自体のダウンロードにはffmpegを利用します。              
 2020年度版：らじる★らじる配信講座には対応していません。                  
 ※ ダウンロードした語学講座のファイルは著作権法で許されている範囲内でご利用ください。       
    
 ### 安定版(master)最新リリース  
-[リリース](https://github.com/CSReviser/CS-English/releases)    
-Ubuntu版:[バイナリビルド手順](https://github.com/CSReviser/CS-English/wiki/ubuntuビルド手順)                          
-Macintosh版: [macOS版について](https://github.com/CSReviser/CS-English/wiki/Macintosh%E7%89%88)                          
+[リリース](https://github.com/CSReviser/CS-Mult/releases)    
+Ubuntu版:[バイナリビルド手順](https://github.com/CSReviser/CS-Mult/wiki/ubuntuビルド手順)                          
+Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/Macintosh%E7%89%88)                          
 
 ### 2020年度の対応講座  
 [2020年度 NHK英語講座レベル一覧](https://eigoryoku.nhk-book.co.jp/cefr)                
