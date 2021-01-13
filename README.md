@@ -18,8 +18,7 @@ Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/M
 まいにちスペイン語     
 まいにちロシア語      
 まいにち中国語  
-ステップアップ中国語  
-まいにちハングル講座  
+ステップアップ中国語    
 基礎英語1  
 基礎英語2  
 基礎英語3  
