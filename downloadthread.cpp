@@ -474,7 +474,7 @@ QString DownloadThread::formatName( QString format, QString kouza, QString hdate
 	int day = hdate.mid( 3, 2 ).toInt();
 
 	if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 ){
-		if ( month == 3 && ( day == 30 || day == 31) && year == 2020 ) 
+		if ( month == 3 && ( day == 30 || day == 31) && year == 2021 ) 
 		year += 0;
 	} else {
 	if ( month <= 4 && QDate::currentDate().year() > year )
@@ -558,7 +558,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	if ( 2020 > year ) return false;
 
 	if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 ){
-		if ( month == 3 && ( day == 30 || day == 31) && year == 2020 ) 
+		if ( month == 3 && ( day == 30 || day == 31) && year == 2021 ) 
 		year += 0;
 	} else {
 	if ( month <= 4 && QDate::currentDate().year() > year )
@@ -570,7 +570,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	int year1 = QDate::currentDate().year();
 	if ( month < 4 )
 		year1 += 1;
-	QString kon_nendo = "2020"; //QString::number(year1);
+	QString kon_nendo = "2021"; //QString::number(year1);
 
 //	if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 ){
 //		QDate today;
@@ -696,9 +696,9 @@ QString DownloadThread::paths[] = {
 	"french/kouza", "french/kouza2", "german/kouza", "german/kouza2",
 	"spanish/kouza", "spanish/kouza2", "italian/kouza", "italian/kouza2",
 	"russian/kouza","russian/kouza2", "chinese/kouza", "chinese/stepup",
+	"hangeul/kouza", "hangeul/stepup",
 	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
-	"english/kaiwa", "english/gakusyu", "english/business1", "english/business2", 
-	"english/gendai", "english/enjoy"
+	"english/kaiwa", "english/gakusyu", "english/gendai", "english/enjoy"
 };
 
 
@@ -710,9 +710,9 @@ void DownloadThread::run() {
 		ui->toolButton_italian, ui->toolButton_italian2,
 		ui->toolButton_russian, ui->toolButton_russian2,
 		ui->toolButton_chinese, ui->toolButton_stepup_chinese, 
+		ui->toolButton_hangeul, ui->toolButton_stepup_hangeul, 
 		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2, ui->toolButton_basic3,
 		ui->toolButton_kaiwa, ui->toolButton_gakusyu, 
-		ui->toolButton_business1, ui->toolButton_business2,
 		ui->toolButton_gendai, ui->toolButton_enjoy,
 		NULL
 	};
