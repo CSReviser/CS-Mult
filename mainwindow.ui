@@ -303,7 +303,7 @@
        </item>
       </layout>
      </item>
-     <item row="12" column="0">
+     <item row="13" column="0">
       <widget class="Line" name="line_2">
        <property name="lineWidth">
         <number>2</number>
@@ -588,6 +588,56 @@
       </layout>
      </item>
      <item row="11" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_19">
+       <item>
+        <widget class="QToolButton" name="toolButton_business1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>ラジオビジネス英語</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="11" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout_17">
+       <item>
+        <widget class="QToolButton" name="toolButton_timetrial">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>英会話タイムトライアル</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="12" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_27">
        <item>
         <widget class="QToolButton" name="toolButton_gendai">
@@ -612,7 +662,7 @@
        </item>
       </layout>
      </item>
-     <item row="11" column="1">
+     <item row="12" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_29">
        <item>
         <widget class="QToolButton" name="toolButton_enjoy">
@@ -637,7 +687,7 @@
        </item>
       </layout>
      </item>
-     <item row="12" column="0">
+     <item row="13" column="0">
       <widget class="Line" name="line_2">
        <property name="lineWidth">
         <number>2</number>
@@ -647,7 +697,7 @@
        </property>
       </widget>
      </item>
-     <item row="13" column="0">
+     <item row="14" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_22">
        <item>
         <widget class="QToolButton" name="toolButton_skip">
@@ -678,7 +728,7 @@
      <item row="15" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_28"/>
      </item>
-     <item row="14" column="1">
+     <item row="15" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_25">
        <item>
         <widget class="QPushButton" name="downloadButton">
@@ -700,7 +750,7 @@
        </item>
       </layout>
      </item>
-     <item row="13" column="1">
+     <item row="14" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_26">
        <item>
         <widget class="QLabel" name="label_ext">
@@ -787,7 +837,7 @@
        </item>
       </layout>
      </item>
-     <item row="12" column="1">
+     <item row="13" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_10">
        <item>
         <widget class="Line" name="line">
@@ -1183,6 +1233,8 @@
   <tabstop>toolButton_basic3</tabstop>
   <tabstop>toolButton_kaiwa</tabstop>
   <tabstop>toolButton_gakusyu</tabstop>
+  <tabstop>toolButton_business1</tabstop>
+  <tabstop>toolButton_timetrial</tabstop>
   <tabstop>toolButton_gendai</tabstop>
   <tabstop>toolButton_enjoy</tabstop>
   <tabstop>toolButton_skip</tabstop>

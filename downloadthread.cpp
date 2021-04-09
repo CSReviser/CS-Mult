@@ -698,7 +698,7 @@ QString DownloadThread::paths[] = {
 	"russian/kouza","russian/kouza2", "chinese/kouza", "chinese/stepup",
 	"hangeul/kouza", "hangeul/stepup",
 	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
-	"english/kaiwa", "english/gakusyu", "english/gendai", "english/enjoy"
+	"english/kaiwa", "english/gakusyu", "english/business1", "english/timetrial", "english/gendai", "english/enjoy"
 };
 
 
@@ -712,7 +712,7 @@ void DownloadThread::run() {
 		ui->toolButton_chinese, ui->toolButton_stepup_chinese, 
 		ui->toolButton_hangeul, ui->toolButton_stepup_hangeul, 
 		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2, ui->toolButton_basic3,
-		ui->toolButton_kaiwa, ui->toolButton_gakusyu, 
+		ui->toolButton_kaiwa, ui->toolButton_gakusyu, ui->toolButton_business1, ui->toolButton_timetrial,
 		ui->toolButton_gendai, ui->toolButton_enjoy,
 		NULL
 	};

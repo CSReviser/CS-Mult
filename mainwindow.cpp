@@ -77,7 +77,7 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( " (2021/04/04)" ); 
+			result = QString( " (2021/04/09)" ); 
 		}
 		return result;
 	}
@@ -207,9 +207,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_basic1, "basic1", false, "basic1_title", DefaultTitle, "basic1_file_name", DefaultFileName },
 		{ ui->toolButton_basic2, "basic2", false, "basic2_title", DefaultTitle, "basic2_file_name", DefaultFileName },
 		{ ui->toolButton_basic3, "basic3", false, "basic3_title", DefaultTitle, "basic3_file_name", DefaultFileName },
-//		{ ui->toolButton_timetrial, "timetrial", false, "timetrial_title", DefaultTitle, "timetrial_file_name", DefaultFileName },
+		{ ui->toolButton_timetrial, "timetrial", false, "timetrial_title", DefaultTitle, "timetrial_file_name", DefaultFileName },
 		{ ui->toolButton_kaiwa, "kaiwa", false, "kaiwa_title", DefaultTitle, "kaiwa_file_name", DefaultFileName },
-//		{ ui->toolButton_business1, "business1", false, "business1_title", DefaultTitle, "business1_file_name", DefaultFileName },
+		{ ui->toolButton_business1, "business1", false, "business1_title", DefaultTitle, "business1_file_name", DefaultFileName },
 //		{ ui->toolButton_business2, "business2", false, "business2_title", DefaultTitle, "business2_file_name", DefaultFileName },
 		{ ui->toolButton_gakusyu, "gakusyu", false, "gakusyu_title", DefaultTitle, "gakusyu_file_name", DefaultFileName },
 		{ ui->toolButton_gendai, "gendai", false, "gendai_title", DefaultTitle, "gendai_file_name", DefaultFileName },
