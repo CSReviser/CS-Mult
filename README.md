@@ -9,8 +9,7 @@
 Ubuntu版:[バイナリビルド手順](https://github.com/CSReviser/CS-Mult/wiki/ubuntuビルド手順)                          
 Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/Macintosh%E7%89%88)                          
 
-### 2020年度の対応講座  
-[2020年度 NHK英語講座レベル一覧](https://eigoryoku.nhk-book.co.jp/cefr)                
+### 2021年度の対応講座           
 まいにちフランス語  
 まいにちイタリア語   
 まいにちハングル講座  
@@ -19,13 +18,20 @@ Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/M
 まいにちロシア語      
 まいにち中国語  
 ステップアップ中国語    
-基礎英語1  
-基礎英語2  
-基礎英語3  
-エンジョイシンプルイングリッシュ    
+まいにちハングル講座          
+ステップアップハングル講座
+小学生の基礎英語         
+中学生の基礎英語レベル1        
+中学生の基礎英語レベル2       
+中高生の基礎英語 in English         
+ラジオ英会話       
+遠山顕の英会話楽習        
+ラジオビジネス英語        
+英会話タイムトライアル         
+高校生からはじめる「現代英語」        
+エンジョイ・シンプル・イングリッシュ           
 
-
-※１：2020年度NHKゴガクHPリニューアル(らじる★らじる配信講座)は非対応です。    
+※１：らじる★らじる配信講座は非対応です。    
 
 ### 作者  
 [jakago](https://github.com/jakago) 2014年度版以前  
