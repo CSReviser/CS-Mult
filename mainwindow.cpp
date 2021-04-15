@@ -77,7 +77,7 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( " (2021/04/09)" ); 
+			result = QString( " (2021/04/15)" ); 
 		}
 		return result;
 	}
@@ -119,15 +119,15 @@ MainWindow::MainWindow( QWidget *parent )
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
-//	QAction* action = new QAction( QString::fromUtf8( "ファイル名設定..." ), this );
-//	connect( action, SIGNAL( triggered() ), this, SLOT( customizeFileName() ) );
-//	customizeMenu->addAction( action );
+	QAction* action = new QAction( QString::fromUtf8( "ファイル名設定..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( customizeFileName() ) );
+	customizeMenu->addAction( action );
 
-//	action = new QAction( QString::fromUtf8( "タイトルタグ設定..." ), this );
-//	connect( action, SIGNAL( triggered() ), this, SLOT( customizeTitle() ) );
-//	customizeMenu->addAction( action );
+	action = new QAction( QString::fromUtf8( "タイトルタグ設定..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( customizeTitle() ) );
+	customizeMenu->addAction( action );
 
-	QAction* action = new QAction( QString::fromUtf8( "保存フォルダ..." ), this );
+	action = new QAction( QString::fromUtf8( "保存フォルダ..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeSaveFolder() ) );
 	customizeMenu->addAction( action );
 
