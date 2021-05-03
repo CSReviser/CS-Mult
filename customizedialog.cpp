@@ -36,8 +36,8 @@ typedef struct LineEdit {
 } LineEdit;
 
 QStringList CustomizeDialog::courses = QStringList()
-		<< QString::fromUtf8( "小学生の基礎英語" ) << QString::fromUtf8( "中学生の基礎英語レベル1" ) 
-		<< QString::fromUtf8( "中学生の基礎英語レベル2" ) << QString::fromUtf8( "中高生の基礎英語_in_English" )
+		<< QString::fromUtf8( "小学生の基礎英語" ) << QString::fromUtf8( "中学生の基礎英語【レベル1】" ) 
+		<< QString::fromUtf8( "中学生の基礎英語【レベル2】" ) << QString::fromUtf8( "中高生の基礎英語_in_English" )
 		<< QString::fromUtf8( "英会話タイムトライアル" ) << QString::fromUtf8( "ラジオ英会話" )
 		<< QString::fromUtf8( "ラジオビジネス英語" ) << QString::fromUtf8( "実践ビジネス英語" )
 		 << QString::fromUtf8( "遠山顕の英会話楽習" ) << QString::fromUtf8( "高校生からはじめる「現代英語」" ) 
