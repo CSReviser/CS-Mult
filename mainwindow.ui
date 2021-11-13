@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>540</width>
-    <height>500</height>
+    <height>510</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>540</width>
-    <height>500</height>
+    <height>510</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>540</width>
-    <height>500</height>
+    <height>510</height>
    </size>
   </property>
   <property name="font">
@@ -578,7 +578,7 @@
           </font>
          </property>
          <property name="text">
-          <string>遠山顕の英会話楽習</string>
+          <string>ラジオで！カムカムエヴリバディ</string>
          </property>
          <property name="checkable">
           <bool>true</bool>

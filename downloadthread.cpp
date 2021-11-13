@@ -698,7 +698,7 @@ QString DownloadThread::paths[] = {
 	"russian/kouza","russian/kouza2", "chinese/kouza", "chinese/stepup",
 	"hangeul/kouza", "hangeul/stepup",
 	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
-	"english/kaiwa", "english/gakusyu", "english/business1", "english/timetrial", "english/gendai", "english/enjoy"
+	"english/kaiwa", "english/everybody", "english/business1", "english/timetrial", "english/gendai", "english/enjoy"
 };
 
 
