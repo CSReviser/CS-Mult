@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>540</width>
-    <height>510</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>540</width>
-    <height>510</height>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>540</width>
-    <height>510</height>
+    <height>500</height>
    </size>
   </property>
   <property name="font">
@@ -303,7 +303,7 @@
        </item>
       </layout>
      </item>
-     <item row="13" column="0">
+     <item row="12" column="0">
       <widget class="Line" name="line_2">
        <property name="lineWidth">
         <number>2</number>
@@ -562,31 +562,6 @@
        </item>
       </layout>
      </item>
-     <item row="10" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_21">
-       <item>
-        <widget class="QToolButton" name="toolButton_gakusyu">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>ラジオで！カムカムエヴリバディ</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
      <item row="11" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_19">
        <item>
@@ -612,7 +587,7 @@
        </item>
       </layout>
      </item>
-     <item row="11" column="1">
+     <item row="10" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_17">
        <item>
         <widget class="QToolButton" name="toolButton_timetrial">
@@ -637,32 +612,7 @@
        </item>
       </layout>
      </item>
-     <item row="12" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_27">
-       <item>
-        <widget class="QToolButton" name="toolButton_gendai">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>高校生からはじめる「現代英語」</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="12" column="1">
+     <item row="11" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_29">
        <item>
         <widget class="QToolButton" name="toolButton_enjoy">
@@ -688,16 +638,6 @@
       </layout>
      </item>
      <item row="13" column="0">
-      <widget class="Line" name="line_2">
-       <property name="lineWidth">
-        <number>2</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="14" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_22">
        <item>
         <widget class="QToolButton" name="toolButton_skip">
@@ -726,9 +666,14 @@
       </layout>
      </item>
      <item row="15" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_28"/>
+      <layout class="QHBoxLayout" name="horizontalLayout_28">
+      </layout>
      </item>
-     <item row="15" column="1">
+     <item row="14" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_280">
+      </layout>
+     </item>
+     <item row="14" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_25">
        <item>
         <widget class="QPushButton" name="downloadButton">
@@ -750,7 +695,7 @@
        </item>
       </layout>
      </item>
-     <item row="14" column="1">
+     <item row="13" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_26">
        <item>
         <widget class="QLabel" name="label_ext">
@@ -837,7 +782,7 @@
        </item>
       </layout>
      </item>
-     <item row="13" column="1">
+     <item row="12" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_10">
        <item>
         <widget class="Line" name="line">
@@ -1232,10 +1177,8 @@
   <tabstop>toolButton_basic2</tabstop>
   <tabstop>toolButton_basic3</tabstop>
   <tabstop>toolButton_kaiwa</tabstop>
-  <tabstop>toolButton_gakusyu</tabstop>
   <tabstop>toolButton_business1</tabstop>
   <tabstop>toolButton_timetrial</tabstop>
-  <tabstop>toolButton_gendai</tabstop>
   <tabstop>toolButton_enjoy</tabstop>
   <tabstop>toolButton_skip</tabstop>
   <tabstop>comboBox_extension</tabstop>
@@ -1396,38 +1339,6 @@
     <hint type="destinationlabel">
      <x>208</x>
      <y>543</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toolButton_gakusyu</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>MainWindowClass</receiver>
-   <slot>toggled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>206</x>
-     <y>311</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>202</x>
-     <y>569</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toolButton_gendai</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>MainWindowClass</receiver>
-   <slot>toggled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>219</x>
-     <y>343</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>246</x>
-     <y>571</y>
     </hint>
    </hints>
   </connection>
