@@ -9,7 +9,7 @@
 Ubuntu版:[バイナリビルド手順](https://github.com/CSReviser/CS-Mult/wiki/ubuntuビルド手順)                          
 Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/Macintosh%E7%89%88)                          
 
-### 2022年度後期の対応講座           
+### 2022年度の対応講座           
 まいにちフランス語  
 まいにちイタリア語   
 まいにちハングル講座  
