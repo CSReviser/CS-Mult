@@ -9,7 +9,7 @@
 Ubuntu版:[バイナリビルド手順](https://github.com/CSReviser/CS-Mult/wiki/ubuntuビルド手順)                          
 Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/Macintosh%E7%89%88)                          
 
-### 2021年度後期の対応講座           
+### 2022年度後期の対応講座           
 まいにちフランス語  
 まいにちイタリア語   
 まいにちハングル講座  
@@ -25,10 +25,8 @@ Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/M
 中学生の基礎英語レベル2       
 中高生の基礎英語 in English         
 ラジオ英会話       
-ラジオで！カムカムエヴリバディ        
 ラジオビジネス英語        
 英会話タイムトライアル         
-高校生からはじめる「現代英語」        
 エンジョイ・シンプル・イングリッシュ           
 
 ※１：らじる★らじる配信講座は非対応です。    
