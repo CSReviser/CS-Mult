@@ -7,7 +7,7 @@
 ※ 英語以外の語学講座と一部の英語講座に対応。          
 ※ 従来１つのボタンであった欧州系の語学講座を【月/火/水】と【木/金】に分けました。              
    - #### Windows版: [2022/04/05版ダウンロード](https://github.com/CSReviser/CS-Mult/releases/download/20220405/CS-Mult-Windows-20220405.zip)                          
-   - #### Ubuntu版: [バイナリビルド手順](https://github.com/CSReviser/CS-Mult/wiki/ubuntuビルド手順)                          
+   - #### Ubuntu版: [2022/04/05版ダウンロード](https://github.com/CSReviser/CS-Mult/releases/download/20220405/CS-Mult-Ubuntu-qt5-20220405.zip)                [バイナリビルド手順](https://github.com/CSReviser/CS-Mult/wiki/ubuntuビルド手順)                          
    - #### Macintosh版: [2022/04/16版ダウンロード](https://github.com/CSReviser/CS-Mult/releases/download/20220416/CS-Mult-Macintosh-20220417.dmg) 　　※ダウンロードボタンの表示問題対策         
    -  [Mac版インストール手順](https://github.com/CSReviser/CS-English/wiki/Mac%E7%89%88%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%89%8B%E9%A0%86)                          　　　           　　                            
 
