@@ -1,4 +1,4 @@
-## 語学講座CS(Mult) (2022年度)      
+## 語学講座CS(Mult)     
 ## ([CS-English](https://csreviser.github.io/CS-English/)／CS-Mult)
 ***
 ### 語学講座CS-Mult [2022/04/05版](https://github.com/CSReviser/CS-Mult/releases/tag/20220405)                 
