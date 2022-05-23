@@ -77,7 +77,7 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( " (2022/05/21)" ); 
+			result = QString( " (2022/05/23)" ); 
 		}
 		return result;
 	}
@@ -122,16 +122,16 @@ MainWindow::MainWindow( QWidget *parent )
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
-	QAction* action = new QAction( QString::fromUtf8( "ファイル名設定..." ), this );
+	QAction* action = new QAction( QString::fromUtf8( "保存フォルダ..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( customizeSaveFolder() ) );
+	customizeMenu->addAction( action );
+
+	action = new QAction( QString::fromUtf8( "ファイル名設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeFileName() ) );
 	customizeMenu->addAction( action );
 
 	action = new QAction( QString::fromUtf8( "タイトルタグ設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeTitle() ) );
-	customizeMenu->addAction( action );
-
-	action = new QAction( QString::fromUtf8( "保存フォルダ..." ), this );
-	connect( action, SIGNAL( triggered() ), this, SLOT( customizeSaveFolder() ) );
 	customizeMenu->addAction( action );
 
 	//action = new QAction( QString::fromUtf8( "スクランブル文字列..." ), this );
@@ -194,16 +194,16 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 	CheckBox checkBoxes[] = {
 		{ ui->toolButton_chinese, "chinese", false, "chinese_title", DefaultTitle, "chinese_file_name", DefaultFileName },
 		{ ui->toolButton_french, "french", false, "french_title", DefaultTitle, "french_file_name", DefaultFileName },
-		{ ui->toolButton_french2, "french2", false, "french_title", DefaultTitle, "french_file_name", DefaultFileName },
+		{ ui->toolButton_french2, "french2", false, "french_title2", DefaultTitle, "french_file_name2", DefaultFileName },
 		{ ui->toolButton_italian, "italian", false, "italian_title", DefaultTitle, "italian_file_name", DefaultFileName },
-		{ ui->toolButton_italian2, "italian2", false, "italian_title", DefaultTitle, "italian_file_name", DefaultFileName },
+		{ ui->toolButton_italian2, "italian2", false, "italian_title2", DefaultTitle, "italian_file_name2", DefaultFileName },
 		{ ui->toolButton_hangeul, "hangeul", false, "hangeul_title", DefaultTitle, "hangeul_file_name", DefaultFileName },
 		{ ui->toolButton_german, "german", false, "german_title", DefaultTitle, "german_file_name", DefaultFileName },
-		{ ui->toolButton_german2, "german2", false, "german_title", DefaultTitle, "german_file_name", DefaultFileName },
+		{ ui->toolButton_german2, "german2", false, "german_title2", DefaultTitle, "german_file_name2", DefaultFileName },
 		{ ui->toolButton_spanish, "spanish", false, "spanish_title", DefaultTitle, "spanish_file_name", DefaultFileName },
-		{ ui->toolButton_spanish2, "spanish2", false, "spanish_title", DefaultTitle, "spanish_file_name", DefaultFileName },
+		{ ui->toolButton_spanish2, "spanish2", false, "spanish_title2", DefaultTitle, "spanish_file_name2", DefaultFileName },
 		{ ui->toolButton_russian, "russian", false, "russian_title", DefaultTitle, "russian_file_name", DefaultFileName },
-		{ ui->toolButton_russian2, "russian2", false, "russian_title", DefaultTitle, "russian_file_name", DefaultFileName },
+		{ ui->toolButton_russian2, "russian2", false, "russian_title2", DefaultTitle, "russian_file_name2", DefaultFileName },
 		{ ui->toolButton_stepup_chinese, "stepup-chinese", false, "stepup-chinese_title", DefaultTitle, "stepup-chinese_file_name", DefaultFileName },
 		{ ui->toolButton_stepup_hangeul, "stepup-hangeul", false, "stepup-hangeul_title", DefaultTitle, "stepup-hangeul_file_name", DefaultFileName },
 		{ ui->toolButton_basic0, "basic0", false, "basic0_title", DefaultTitle, "basic0_file_name", DefaultFileName },
