@@ -575,7 +575,9 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	QString outputDir = MainWindow::outputDir + kouza;
 	if ( QString::compare( this_week, "今週放送分" ) ==0 ){
 		outputDir = outputDir + "/" + QString::fromUtf8( "今週放送分" );
-		if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 )
+		QDate today;
+		today.setDate(QDate::currentDate().year(),QDate::currentDate().month(),QDate::currentDate().day());
+		if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 || (today.dayOfWeek() >= 1 && today.dayOfWeek() <= 3))
 		return true;
 	}
 	
