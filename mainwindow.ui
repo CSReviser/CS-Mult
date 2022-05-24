@@ -670,10 +670,6 @@
       </layout>
      </item>
      <item row="14" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_280">
-      </layout>
-     </item>
-     <item row="14" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_32">
        <item>
         <widget class="QCheckBox" name="checkBox_next_week2"> 
@@ -684,7 +680,7 @@
           </sizepolicy>
          </property>
          <property name="font">
-          <font color="black">
+          <font color="white">
            <pointsize>11</pointsize>
           </font>
          </property>
