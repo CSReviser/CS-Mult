@@ -193,7 +193,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		QVariant fileNameFormat;
 	} CheckBox;
 #define DefaultTitle "%k_%Y_%M_%D"
-#define DefaultFileName "%k_%Y_%M_%D.mp3"
+#define DefaultFileName "%k_%Y_%M_%D.m4a"
 	CheckBox checkBoxes[] = {
 		{ ui->toolButton_chinese, "chinese", false, "chinese_title", DefaultTitle, "chinese_file_name", DefaultFileName },
 		{ ui->toolButton_french, "french", false, "french_title", DefaultTitle, "french_file_name", DefaultFileName },
@@ -253,7 +253,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
-#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )	// X11では正しく憶えられないので位置をリストアしない
+//#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
 		saved = settings.value( SETTING_GEOMETRY );
 		if ( saved.type() == QVariant::Invalid )
 			move( 70, 22 );
@@ -263,7 +263,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			restoreGeometry( saved.toByteArray() );
 			resize( windowSize );
 		}
-#endif
+//#endif
 
 		saved = settings.value( SETTING_SAVE_FOLDER );
 		outputDir = saved.type() == QVariant::Invalid ? Utility::applicationBundlePath() : saved.toString();
@@ -286,9 +286,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
 	} else {	// 設定書き出し
-#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )
+//#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )　//(2022/11/01:Linux向けに変更）
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
-#endif
+//#endif                                              　//(2022/11/01:Linux向けに変更）
 		if ( outputDirSpecified )
 			settings.setValue( SETTING_SAVE_FOLDER, outputDir );
 		settings.setValue( SETTING_SCRAMBLE, scramble );
