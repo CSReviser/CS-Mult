@@ -660,11 +660,24 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 #else
 	dstPath = outputDir + outFileName;
 #endif
-	QString filem3u8a = prefix1 + file + "/master.m3u8";
-		if ( file.right(3) != "mp4" ) 
+	if ( file.right(4) != ".mp4" ) 
 		 file = file + ".mp4";
+	QString filem3u8a = prefix1 + file + "/master.m3u8";
 		 
+	QStringList arguments_v = { "-http_seekable", "0", "-version", "0" };
+	QProcess process_v;
+	process_v.setProgram( ffmpeg );
+	process_v.setArguments( arguments_v );
+	process_v.start();
+	process_v.waitForFinished();
+	QString str_v = process_v.readAllStandardError();
+	process_v.kill();
+	process_v.close();	 
 	QString arguments00 = "-y -http_seekable 0 -i";
+	if (str_v.contains( "Option not found" )) {
+	                     arguments00 = "-y -i";
+	}
+
 	QStringList arguments0 = arguments00.split(" ");
 	QStringList arguments = arguments0 + ffmpegHash[extension]
 			.arg( filem3u8a, dstPath, id3tagTitle, kouza, QString::number( year ) ).split(" ");
