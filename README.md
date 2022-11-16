@@ -20,6 +20,12 @@ Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/M
 ステップアップ中国語    
 まいにちハングル講座          
 ステップアップハングル講座        
+アラビア語   ※１ 
+ポルトガル語 　※１     
+
+※１：らじる★らじる配信講座は2022/11/16版から対応しました。    
+
+＜対象外講座＞        
 小学生の基礎英語         
 中学生の基礎英語レベル1        
 中学生の基礎英語レベル2       
@@ -28,8 +34,6 @@ Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/M
 ラジオビジネス英語        
 英会話タイムトライアル         
 エンジョイ・シンプル・イングリッシュ           
-
-※１：らじる★らじる配信講座は非対応です。    
 
 ### 作者  
 [jakago](https://github.com/jakago) 2014年度版以前  
