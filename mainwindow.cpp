@@ -41,6 +41,17 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrl>
+#include <QUrlQuery>
+#include <QtNetwork>
+#include <QTemporaryFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
@@ -51,6 +62,23 @@
 #define SCRAMBLE_URL1 "http://www47.atwiki.jp/jakago/pub/scramble.xml"
 #define SCRAMBLE_URL2 "http://cdn47.atwikiimg.com/jakago/pub/scramble.xml"
 #define X11_WINDOW_VERTICAL_INCREMENT 5
+
+#define SETTING_OPTIONAL1 "optional1"
+#define SETTING_OPTIONAL2 "optional2"
+#define SETTING_OPTIONAL3 "optional3"
+#define SETTING_OPTIONAL4 "optional4"
+#define SETTING_OPT_TITLE1 "opt_title1"
+#define SETTING_OPT_TITLE2 "opt_title2"
+#define SETTING_OPT_TITLE3 "opt_title3"
+#define SETTING_OPT_TITLE4 "opt_title4"
+#define OPTIONAL1 "0953"
+#define OPTIONAL2 "4412"
+#define OPTIONAL3 "0937"
+#define OPTIONAL4 "2769"
+#define Program_TITLE1 "任意らじる番組１"
+#define Program_TITLE2 "任意らじる番組２"
+#define Program_TITLE3 "任意らじる番組３"
+#define Program_TITLE4 "任意らじる番組４"
 
 #ifdef QT4_QT5_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
@@ -77,7 +105,7 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( " (2022/11/08)" ); 
+			result = QString( " (2022/11/16)" ); 
 		}
 		return result;
 	}
@@ -87,6 +115,17 @@ QString MainWindow::outputDir;
 QString MainWindow::scramble;
 QString MainWindow::scrambleUrl1;
 QString MainWindow::scrambleUrl2;
+QString MainWindow::optional1;
+QString MainWindow::optional2;
+QString MainWindow::optional3;
+QString MainWindow::optional4;
+QString MainWindow::program_title1;
+QString MainWindow::program_title2;
+QString MainWindow::program_title3;
+QString MainWindow::program_title4;
+QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
+QString MainWindow::suffix = "listdataflv.xml";
+QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
@@ -209,18 +248,24 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_russian2, "russian2", false, "russian_title2", DefaultTitle, "russian_file_name2", DefaultFileName },
 		{ ui->toolButton_stepup_chinese, "stepup-chinese", false, "stepup-chinese_title", DefaultTitle, "stepup-chinese_file_name", DefaultFileName },
 		{ ui->toolButton_stepup_hangeul, "stepup-hangeul", false, "stepup-hangeul_title", DefaultTitle, "stepup-hangeul_file_name", DefaultFileName },
-		{ ui->toolButton_basic0, "basic0", false, "basic0_title", DefaultTitle, "basic0_file_name", DefaultFileName },
-		{ ui->toolButton_basic1, "basic1", false, "basic1_title", DefaultTitle, "basic1_file_name", DefaultFileName },
-		{ ui->toolButton_basic2, "basic2", false, "basic2_title", DefaultTitle, "basic2_file_name", DefaultFileName },
-		{ ui->toolButton_basic3, "basic3", false, "basic3_title", DefaultTitle, "basic3_file_name", DefaultFileName },
-		{ ui->toolButton_timetrial, "timetrial", false, "timetrial_title", DefaultTitle, "timetrial_file_name", DefaultFileName },
-		{ ui->toolButton_kaiwa, "kaiwa", false, "kaiwa_title", DefaultTitle, "kaiwa_file_name", DefaultFileName },
-		{ ui->toolButton_business1, "business1", false, "business1_title", DefaultTitle, "business1_file_name", DefaultFileName },
+		{ ui->toolButton_arabic, "arabic", false, "arabic_title", DefaultTitle, "arabic_file_name", DefaultFileName },
+		{ ui->toolButton_polish, "polish", false, "polish_title", DefaultTitle, "spolish_file_name", DefaultFileName },
+//		{ ui->toolButton_basic0, "basic0", false, "basic0_title", DefaultTitle, "basic0_file_name", DefaultFileName },
+//		{ ui->toolButton_basic1, "basic1", false, "basic1_title", DefaultTitle, "basic1_file_name", DefaultFileName },
+//		{ ui->toolButton_basic2, "basic2", false, "basic2_title", DefaultTitle, "basic2_file_name", DefaultFileName },
+//		{ ui->toolButton_basic3, "basic3", false, "basic3_title", DefaultTitle, "basic3_file_name", DefaultFileName },
+//		{ ui->toolButton_timetrial, "timetrial", false, "timetrial_title", DefaultTitle, "timetrial_file_name", DefaultFileName },
+//		{ ui->toolButton_kaiwa, "kaiwa", false, "kaiwa_title", DefaultTitle, "kaiwa_file_name", DefaultFileName },
+//		{ ui->toolButton_business1, "business1", false, "business1_title", DefaultTitle, "business1_file_name", DefaultFileName },
 //		{ ui->toolButton_business2, "business2", false, "business2_title", DefaultTitle, "business2_file_name", DefaultFileName },
 //		{ ui->toolButton_gakusyu, "gakusyu", false, "gakusyu_title", DefaultTitle, "gakusyu_file_name", DefaultFileName },
 //		{ ui->toolButton_gendai, "gendai", false, "gendai_title", DefaultTitle, "gendai_file_name", DefaultFileName },
-		{ ui->toolButton_enjoy, "enjoy", false, "enjoy_title", DefaultTitle, "enjoy_file_name", DefaultFileName },
+//		{ ui->toolButton_enjoy, "enjoy", false, "enjoy_title", DefaultTitle, "enjoy_file_name", DefaultFileName },
 //		{ ui->toolButton_vrradio, "vrradio", false, "vrradio_title", DefaultTitle, "vrradio_file_name", DefaultFileName },
+		{ ui->toolButton_optional1, "optional_1", false, "optional1_title", DefaultTitle, "optional1_file_name", DefaultFileName },
+		{ ui->toolButton_optional2, "optional_2", false, "optional2_title", DefaultTitle, "optional2_file_name", DefaultFileName },
+		{ ui->toolButton_optional3, "optional_3", false, "optional3_title", DefaultTitle, "optional3_file_name", DefaultFileName },
+		{ ui->toolButton_optional4, "optional_4", false, "optional4_title", DefaultTitle, "optional4_file_name", DefaultFileName },
 		{ ui->checkBox_13, "charo", false, "charo_title", DefaultTitle, "charo_file_name", DefaultFileName },
 		{ ui->checkBox_14, "e-news", false, "e-news_title", DefaultTitle, "e-news_file_name", DefaultFileName },
 		{ ui->checkBox_shower, "shower", false, "shower_title", DefaultTitle, "shower_file_name", DefaultFileName },
@@ -229,6 +274,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->checkBox_keep_on_error, "keep_on_error", false, "", "", "", "" },
 		{ ui->checkBox_this_week, "this_week", true, "", "", "", "" },
 		{ ui->checkBox_next_week, "next_week", false, "", "", "", "" },
+		{ ui->checkBox_next_week2, "next_week", false, "", "", "", "" },
 		{ ui->checkBox_past_week, "past_week", false, "", "", "", "" },
 		{ ui->toolButton_detailed_message, "detailed_message", false, "", "", "", "" },
 		{ NULL, NULL, false, "", "", "", "" }
