@@ -1,5 +1,5 @@
 ## 語学講座CS【Mult】     
-## ([TOP Page](https://csreviser.github.io/CS-English/)／CS【Mult】)
+## ([TOP Page](https://csreviser.github.io/CS-English/)／[【English】版](https://csreviser.github.io/CS-English/new/))
 ***
 ### 語学講座CS【Mult】 [2022/11/16版](https://github.com/CSReviser/CS-Mult/releases/tag/20221116)                 
                 
