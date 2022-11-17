@@ -1,11 +1,11 @@
 ## 語学講座CS【Mult】     
-## ([語学講座CS](https://csreviser.github.io/CS-English/)／CS【Mult】)
+## ([TOP Page](https://csreviser.github.io/CS-English/)／CS【Mult】)
 ***
-### 語学講座CS-Mult [2022/11/16版](https://github.com/CSReviser/CS-Mult/releases/tag/20221116)                 
+### 語学講座CS【Mult】 [2022/11/16版](https://github.com/CSReviser/CS-Mult/releases/tag/20221116)                 
                 
 [【対応講座】](https://github.com/CSReviser/CS-Mult/wiki/%E5%AF%BE%E5%BF%9C%E8%AC%9B%E5%BA%A7)            
 ※ 英語以外の語学講座に対応。らじる★らじる配信講座に対応、差し替えの為、英語講座には非対応になりました。          
-※ 従来１つのボタンであった欧州系の語学講座を【月/火/水】と【木/金】に分けました。              
+※ 欧州系の語学講座は半期で講座名称が変わるので放送曜日【月/火/水】と【木/金】で表記しています。「入門編」「初級編」「中級編」「応用編」などに読み替えて下さい。              
    - #### Windows版: [2022/11/16版ダウンロード](https://github.com/CSReviser/CS-Mult/releases/download/20221116/CS-Mult-Windows-20221116.zip)                          
    - #### Ubuntu版: [2022/11/16版ダウンロード](https://github.com/CSReviser/CS-Mult/releases/download/20221116/CS-Mult-Ubuntu-qt5-20221116.zip)                [バイナリビルド手順](https://github.com/CSReviser/CS-Mult/wiki/ubuntuビルド手順)                          
    - #### Macintosh版: [2022/11/16版ダウンロード](https://github.com/CSReviser/CS-Mult/releases/download/20221116/CS-Mult-Macintosh-20221116.dmg)
