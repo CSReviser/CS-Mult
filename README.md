@@ -24,8 +24,6 @@ Macintosh版: [macOS版について](https://github.com/CSReviser/CS-Mult/wiki/M
 ポルトガル語 　※１     
 
 ※１：らじる★らじる配信講座は2022/11/16版から対応しました。    
-
-※１：2022/11/06版で「らじる★らじる」配信の講座に対応しました。   
 ※２：2022/11/20版で「らじる★らじる」配信の講座を任意に4講座設定可能にしました。           
 設定可能な[らじる★らじる番組ＩＤ一覧はこちらです。](https://github.com/CSReviser/CS-English/wiki/%E3%82%89%E3%81%98%E3%82%8B%E2%98%85%E3%82%89%E3%81%98%E3%82%8B%E7%95%AA%E7%B5%84%EF%BC%A9%EF%BC%A4%E4%B8%80%E8%A6%A7)                                 
 [任意講座設定手順はこちらです。](https://github.com/CSReviser/CS-English/wiki/%E4%BB%BB%E6%84%8F%E3%82%89%E3%81%98%E3%82%8B%E7%95%AA%E7%B5%84%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86)                 
