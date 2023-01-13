@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>195</height>
+    <width>330</width>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>150</y>
+     <x>20</x>
+     <y>330</y>
      <width>301</width>
      <height>32</height>
     </rect>
@@ -33,7 +33,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>60</y>
+     <y>233</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -43,20 +43,20 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>0</y>
-     <width>271</width>
+     <y>187</y>
+     <width>311</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>番組ID設定：4桁の数字を入力してください。</string>
+    <string>任意設定：4桁の数字の番組IDを入力してください。</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="optional2">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>60</y>
+     <y>233</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -66,7 +66,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>120</y>
+     <y>288</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -76,7 +76,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>120</y>
+     <y>288</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -86,7 +86,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>40</y>
+     <y>213</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -99,7 +99,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>40</y>
+     <y>213</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -112,7 +112,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>100</y>
+     <y>268</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -125,7 +125,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>100</y>
+     <y>268</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -133,6 +133,110 @@
    <property name="text">
     <string>らじる番組４</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>291</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>番組ボタン設定</string>
+   </property>
+   <widget class="QRadioButton" name="radioButton_1">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>42</y>
+      <width>281</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>基礎英語/エンジョイ</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_2">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>62</y>
+      <width>271</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>英会話/ビジネス/ボキャブライダー</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_9">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>146</y>
+      <width>96</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>任意設定</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_3">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>82</y>
+      <width>281</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>その他：ドラマ、朗読</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_4">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>102</y>
+      <width>231</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>その他：カルチャーラジオ</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_5">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>122</y>
+      <width>221</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>その他：その他</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>22</y>
+      <width>281</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>日本語/現代英語/他</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
