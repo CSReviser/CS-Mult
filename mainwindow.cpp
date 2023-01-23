@@ -55,6 +55,8 @@
 
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
+#define SETTING_WINDOWSTATE "windowState"
+#define SETTING_MAINWINDOW_POSITION "Mainwindow_Position"
 #define SETTING_SAVE_FOLDER "save_folder"
 #define SETTING_SCRAMBLE "scramble"
 #define SETTING_SCRAMBLE_URL1 "scramble_url1"
@@ -105,13 +107,14 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( " (2023/01/13)" ); 
+			result = QString( " (2023/01/23)" ); 
 		}
 		return result;
 	}
 }
 
 QString MainWindow::outputDir;
+QString MainWindow::ini_file_path;
 QString MainWindow::scramble;
 QString MainWindow::scrambleUrl1;
 QString MainWindow::scrambleUrl2;
@@ -130,6 +133,12 @@ QString MainWindow::no_write_ini;
 
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
+#ifdef QT4_QT5_MAC
+	ini_file_path = Utility::ConfigLocationPath();
+#endif
+#if !defined( QT4_QT5_MAC )
+	ini_file_path = Utility::applicationBundlePath();
+#endif	
 	ui->setupUi( this );
 	settings( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
@@ -140,10 +149,10 @@ MainWindow::MainWindow( QWidget *parent )
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
-	QRect rect = geometry();
+//	QRect rect = geometry();
 //	rect.setHeight( rect.height() - menuBar()->height() );
-	rect.moveTop( rect.top() + menuBar()->height() );	// 4.6.3だとこれがないとウィンドウタイトルがメニューバーに隠れる
-	setGeometry( rect );
+//	rect.moveTop( rect.top() + menuBar()->height() );	// 4.6.3だとこれがないとウィンドウタイトルがメニューバーに隠れる
+//	setGeometry( rect );
 #endif
 #ifdef Q_OS_LINUX		// Linuxでは高さが足りなくなるので縦方向に伸ばしておく
 	menuBar()->setNativeMenuBar(false);	// メニューバーが表示されなくなったに対応
@@ -200,16 +209,16 @@ MainWindow::MainWindow( QWidget *parent )
 	}
 	qApp->setStyleSheet( styleSheet );
 
-	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // DPI support
-	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); //HiDPI pixmaps
-	adjustSize();                             //高DPIディスプレイ対応
-	setFixedSize(size());
-        int dpiX = qApp->desktop()->logicalDpiX();
-	QFont f;
-	int defaultFontSize = f.pointSize() * ( 96.0 / dpiX );
-	f.setPointSize( defaultFontSize );
-	qApp->setFont(f);
+//	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+//	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // DPI support
+//	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); //HiDPI pixmaps
+//	adjustSize();                             //高DPIディスプレイ対応
+//	setFixedSize(size());
+//      int dpiX = qApp->desktop()->logicalDpiX();
+//	QFont f;
+//	int defaultFontSize = f.pointSize() * ( 96.0 / dpiX );
+//	f.setPointSize( defaultFontSize );
+//	qApp->setFont(f);
 }
 
 MainWindow::~MainWindow() {
@@ -316,6 +325,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
+#if !defined( QT4_QT5_MAC )
 //#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
 		saved = settings.value( SETTING_GEOMETRY );
 		if ( saved.type() == QVariant::Invalid )
@@ -326,16 +336,35 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			restoreGeometry( saved.toByteArray() );
 			resize( windowSize );
 		}
-//#endif
+//#endif                                              　//(2022/11/01:Linux向けに変更） 
+#endif
+#ifdef QT4_QT5_MAC
+		saved = settings.value( SETTING_MAINWINDOW_POSITION );
+		if ( saved.type() == QVariant::Invalid ) {
+			move( 70, 22 );
+			QRect rect = geometry();
+			rect.setHeight( rect.height() );
+			rect.moveTop( rect.top() );
+			setGeometry( rect );
+		} else {
+			QSize windowSize = size();
+			move( saved.toPoint() );
+			resize( windowSize );
+		}
+		saved = settings.value( SETTING_WINDOWSTATE );
+		if ( !(saved.type() == QVariant::Invalid) )
+			restoreState( saved.toByteArray() );
+#endif
 
 		saved = settings.value( SETTING_SAVE_FOLDER );
 #if !defined( QT4_QT5_MAC )
 		outputDir = saved.type() == QVariant::Invalid ? Utility::applicationBundlePath() : saved.toString();
 #endif
 #ifdef QT4_QT5_MAC
-		if ( saved.type() == QVariant::Invalid )
+		if ( saved.type() == QVariant::Invalid ) {
+			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 			MainWindow::customizeSaveFolder();
-		else
+		} else
 			outputDir = saved.toString();
 #endif
 		saved = settings.value( SETTING_SCRAMBLE );
@@ -394,9 +423,13 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
 	} else {	// 設定書き出し
-//#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )　//(2022/11/01:Linux向けに変更）
+#if !defined( QT4_QT5_MAC )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
-//#endif                                              　//(2022/11/01:Linux向けに変更）
+#endif
+#ifdef QT4_QT5_MAC
+		settings.setValue( SETTING_WINDOWSTATE, saveState());
+		settings.setValue( SETTING_MAINWINDOW_POSITION, pos() );
+#endif
 		if ( outputDirSpecified )
 			settings.setValue( SETTING_SAVE_FOLDER, outputDir );
 		settings.setValue( SETTING_SCRAMBLE, scramble );
@@ -435,14 +468,8 @@ void MainWindow::customizeFileName() {
 }
 
 void MainWindow::customizeSaveFolder() {
-#if !defined( QT4_QT5_MAC )
 	QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "書き込み可能な保存フォルダを指定してください" ),
 									   outputDir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
-#endif
-#ifdef QT4_QT5_MAC
-	QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "書き込み可能な保存フォルダを指定してください" ),
-									   QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
-#endif
 	if ( dir.length() ) {
 		outputDir = dir + QDir::separator();
 		outputDirSpecified = true;
@@ -568,12 +595,9 @@ void MainWindow::closeEvent2( ) {
 	int res = QMessageBox::question(this, tr("設定削除"), tr("削除しますか？"));
 	if (res == QMessageBox::Yes) {
 	no_write_ini = "no";
-#if !defined( QT4_QT5_MAC )
-	QFile::remove( Utility::applicationBundlePath() + INI_FILE );
-#endif
-#ifdef QT4_QT5_MAC
-	QFile::remove( Utility::ConfigLocationPath() + INI_FILE );
-#endif
+	
+	QFile::remove( ini_file_path + INI_FILE );
+	
 	if ( downloadThread ) {
 		messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
 		download();
