@@ -1,5 +1,5 @@
 ## 語学講座CS【Mult】     
-## ([【語学講座CS2】](https://csreviser.github.io/CaptureStream2/)/[TOP Page](https://csreviser.github.io/CS-English/)/[【English】](https://csreviser.github.io/CS-English/new/))
+## ([語学講座CS2](https://csreviser.github.io/CaptureStream2/)/[TOP Page](https://csreviser.github.io/CS-English/)/[【English】](https://csreviser.github.io/CS-English/new/))
 ***
 # **※2023年3月末 更新終了**
 ***
