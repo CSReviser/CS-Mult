@@ -5,8 +5,6 @@
 # 　**⇒　[語学講座CS2](https://csreviser.github.io/CaptureStream2/)**
 ***
 ### 語学講座CS【Mult】 [2023/01/23版](https://github.com/CSReviser/CS-Mult/releases/tag/20230123)                 
-#### ※語学講座CS【Mult】は2022年度末(2023/3末)で更新を終了し、語学講座CS【English】と【Mult】を統合した[語学講座CS2](https://csreviser.github.io/CaptureStream2/)に移行します。新サイトを作成しました。[(こちら)](https://csreviser.github.io/CaptureStream2/)
-
 [【対応講座】](https://github.com/CSReviser/CS-Mult/wiki/%E5%AF%BE%E5%BF%9C%E8%AC%9B%E5%BA%A7)            
 ※１：英語以外の語学講座に対応。          
 ※２：2022/11/18版で「らじる★らじる」配信の講座を任意に4講座設定可能にしました。           
