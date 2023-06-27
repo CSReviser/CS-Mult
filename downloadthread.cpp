@@ -76,11 +76,11 @@ QString DownloadThread::prefix = "https://www.nhk.or.jp/gogaku/st/xml/";
 QString DownloadThread::suffix = "listdataflv.xml";
 QString DownloadThread::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 
-QString DownloadThread::prefix1 = "https://nhk-vh.akamaihd.net/i/gogaku-stream/mp4/";
-QString DownloadThread::prefix2 = "https://nhks-vh.akamaihd.net/i/gogaku-stream/mp4/";
+QString DownloadThread::prefix1 = "https://vod-stream.nhk.jp/gogaku-stream/mp4/";
+QString DownloadThread::prefix2 = "https://vod-stream.nhk.jp/gogaku-stream/mp4/";
 QString DownloadThread::prefix3 = "https://vod-stream.nhk.jp/gogaku-stream/mp4/";
-QString DownloadThread::suffix1 = "/master.m3u8";
-QString DownloadThread::suffix2 = ".mp4/master.m3u8";
+QString DownloadThread::suffix1 = "/index.m3u8";
+QString DownloadThread::suffix2 = "/index.m3u8";
 QString DownloadThread::suffix3 = "/index.m3u8";
 
 QString DownloadThread::flv_host = "flv.nhk.or.jp";
@@ -95,10 +95,18 @@ QString DownloadThread::optional1;
 QString DownloadThread::optional2;
 QString DownloadThread::optional3;
 QString DownloadThread::optional4;
+QString DownloadThread::optional5;
+QString DownloadThread::optional6;
+QString DownloadThread::optional7;
+QString DownloadThread::optional8;
 QString DownloadThread::opt_title1;
 QString DownloadThread::opt_title2;
 QString DownloadThread::opt_title3;
 QString DownloadThread::opt_title4;
+QString DownloadThread::opt_title5;
+QString DownloadThread::opt_title6;
+QString DownloadThread::opt_title7;
+QString DownloadThread::opt_title8;
 QStringList DownloadThread::malformed = (QStringList() << "3g2" << "3gp" << "m4a" << "mov");
 
 QHash<QString, QString> DownloadThread::ffmpegHash;
@@ -1076,7 +1084,8 @@ QString DownloadThread::paths[] = {
 	"russian/kouza","russian/kouza2", "chinese/kouza", "chinese/stepup",
 	"hangeul/kouza", "hangeul/stepup",
 	"null", "null", "null",
-	"null_optional1", "null_optional2", "null_optional3", "null_optional4"
+	"null_optional1", "null_optional2", "null_optional3", "null_optional4",
+	"null_optional5", "null_optional6", "null_optional7", "null_optional8"
 //	"english/kaiwa", "english/everybody", "english/business1", "english/timetrial", "english/gendai", "english/enjoy"
 };
 
@@ -1086,7 +1095,28 @@ QString DownloadThread::json_paths[] = {
 	"0956", "4414",	"0915", "6581",
 	"0951", "6810",
 	"0937", "1893", "2769",
-	"7155", "0701", "7629", "7512"
+	"7155", "0701", "7629", "7512",
+	"0953", "0943", "0946", "0948"
+};
+
+QString DownloadThread::paths2[] = {
+	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
+	"english/timetrial", "english/kaiwa", "english/business1", "english/enjoy",
+	"french/kouza", "french/kouza2", "german/kouza", "german/kouza2",
+	"spanish/kouza", "spanish/kouza2", "italian/kouza", "italian/kouza2",
+	"russian/kouza","russian/kouza2", "chinese/kouza", "chinese/stepup",
+	"hangeul/kouza", "hangeul/stepup", 
+	NULL
+};
+
+QString DownloadThread::json_paths2[] = { 
+	"6805", "6806", "6807", "6808",
+	"2331", "0916", "6809", "3064", 
+	"0953", "4412", "0943", "4410",
+	"0948", "4413", "0946", "4411",
+	"0956", "4414", "0915", "6581",
+	"0951", "6810", 
+	NULL
 };
 
 void DownloadThread::run() {
@@ -1100,7 +1130,9 @@ void DownloadThread::run() {
 		ui->toolButton_hangeul, ui->toolButton_stepup_hangeul, 
 		ui->toolButton_arabic, ui->toolButton_polish, ui->toolButton_polish,
 		ui->toolButton_optional1, ui->toolButton_optional2, 
-		ui->toolButton_optional3, ui->toolButton_optional4, 
+		ui->toolButton_optional3, ui->toolButton_optional4,
+		ui->toolButton_optional5, ui->toolButton_optional6, 
+		ui->toolButton_optional7, ui->toolButton_optional8, 
 //		ui->toolButton_kaiwa, ui->toolButton_business1, ui->toolButton_timetrial,
 //		ui->toolButton_enjoy,
 //		ui->toolButton_kaiwa, ui->toolButton_gakusyu, ui->toolButton_business1, ui->toolButton_timetrial,
@@ -1121,18 +1153,37 @@ void DownloadThread::run() {
 		optional2 = MainWindow::optional2;
 		optional3 = MainWindow::optional3;
 		optional4 = MainWindow::optional4;
+		optional5 = MainWindow::optional5;
+		optional6 = MainWindow::optional6;
+		optional7 = MainWindow::optional7;
+		optional8 = MainWindow::optional8;
 		if ( paths[i].right( 9 ).startsWith("optional1") ) json_paths[i] = optional1;
 		if ( paths[i].right( 9 ).startsWith("optional2") ) json_paths[i] = optional2;
 		if ( paths[i].right( 9 ).startsWith("optional3") ) json_paths[i] = optional3;
 		if ( paths[i].right( 9 ).startsWith("optional4") ) json_paths[i] = optional4;
+		if ( paths[i].right( 9 ).startsWith("optional5") ) json_paths[i] = optional5;
+		if ( paths[i].right( 9 ).startsWith("optional6") ) json_paths[i] = optional6;
+		if ( paths[i].right( 9 ).startsWith("optional7") ) json_paths[i] = optional7;
+		if ( paths[i].right( 9 ).startsWith("optional8") ) json_paths[i] = optional8;
 
 		if ( checkbox[i]->isChecked() ) {
-		   if ( (paths[i].left( 4 ) != "null" && !(ui->checkBox_next_week2->isChecked())) || json_paths[i] == "0000" ) {
-			QStringList fileList = getAttribute( prefix + paths[i] + "/" + suffix, "@file" );
-			QStringList kouzaList = getAttribute( prefix + paths[i] + "/" + suffix, "@kouza" );
-			QStringList hdateList = one2two( getAttribute( prefix + paths[i] + "/" + suffix, "@hdate" ) );
-			QStringList nendoList = getAttribute( prefix + paths[i] + "/" + suffix, "@nendo" );
-			QStringList dirList = getAttribute( prefix + paths[i] + "/" + suffix, "@dir" );
+		   QString Xml_koza = "NULL";
+		   for ( int ii = 0; json_paths2[ii] != NULL; ii++ ) 
+		     	if ( json_paths[i] == json_paths2[ii]  )  Xml_koza = paths2[ii]; 
+		     	
+//		   if ( (paths[i].left( 4 ) != "null" && !(ui->checkBox_next_week2->isChecked())) || json_paths[i] == "0000" ) {
+		   if ( !(ui->checkBox_next_week2->isChecked()) || json_paths[i] == "0000" ) {
+			QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
+			QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );
+			QStringList hdateList = one2two( getAttribute( prefix + Xml_koza + "/" + suffix, "@hdate" ) );
+			QStringList nendoList = getAttribute( prefix + Xml_koza + "/" + suffix, "@nendo" );
+			QStringList dirList = getAttribute( prefix + Xml_koza + "/" + suffix, "@dir" );
+
+//			QStringList fileList = getAttribute( prefix + paths[i] + "/" + suffix, "@file" );
+//			QStringList kouzaList = getAttribute( prefix + paths[i] + "/" + suffix, "@kouza" );
+//			QStringList hdateList = one2two( getAttribute( prefix + paths[i] + "/" + suffix, "@hdate" ) );
+//			QStringList nendoList = getAttribute( prefix + paths[i] + "/" + suffix, "@nendo" );
+//			QStringList dirList = getAttribute( prefix + paths[i] + "/" + suffix, "@dir" );
 			
 			if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 				if ( true /*ui->checkBox_this_week->isChecked()*/ ) {
@@ -1142,13 +1193,13 @@ void DownloadThread::run() {
 				}
 			}
 		   }
-		   if (paths[i].left( 4 ) != "null" &&  ui->checkBox_next_week2->isChecked() ) {
+//		   if (paths[i].left( 4 ) != "null" &&  ui->checkBox_next_week2->isChecked() ) {
+		   if ( paths[i] != "null" &&  ui->checkBox_next_week2->isChecked() && !(paths[i].left( 4 ) == "null" && Xml_koza == "NULL" ) ) {
 		   		QStringList fileList2 = getJsonData( json_paths[i], "file_name" );
 				QStringList kouzaList2 = getJsonData( json_paths[i], "program_name" );
 				QStringList file_titleList = getJsonData( json_paths[i], "file_title" );
 				QStringList hdateList2 = one2two( getJsonData( json_paths[i], "onair_date" ));
 				QStringList yearList = getJsonData( json_paths[i], "open_time" );
-				QStringList kouzaList = getAttribute( prefix + paths[i] + "/" + suffix, "@kouza" );
 
 				if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
 					for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
@@ -1157,7 +1208,8 @@ void DownloadThread::run() {
 					}
 				}
 		   }
-		   if ( paths[i].left( 4 ) == "null" ) {
+//		   if ( paths[i].left( 4 ) == "null" ) {
+		   if ( paths[i] == "null" || (paths[i].left( 4 ) == "null" && Xml_koza == "NULL" ) ) {
 		   	QStringList fileList2 = getJsonData( json_paths[i], "file_name" );
 			QStringList kouzaList2 = getJsonData( json_paths[i], "program_name" );
 			QStringList file_titleList = getJsonData( json_paths[i], "file_title" );
