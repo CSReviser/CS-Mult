@@ -79,6 +79,7 @@ private:
 	static QString paths3[];
 	static QString json_paths[];
 	static QString json_paths2[];
+	static QString optional_data[];
 	static QString prefix;
 	static QString prefix1;
 	static QString prefix2;
@@ -99,6 +100,7 @@ private:
 	static QString scramble;
 	static QStringList malformed;
 	
+	static QString optional[];
 	static QString optional1;
 	static QString optional2;
 	static QString optional3;

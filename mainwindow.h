@@ -101,6 +101,7 @@ private slots:
 	void customizeSaveFolder();
 	void customizeScramble();
 	void closeEvent2( );
+	void setButtomTitle();
 
 private:
 	QStringList getAttribute( QString url, QString attribute );

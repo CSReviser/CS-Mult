@@ -20,11 +20,7 @@
 
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
-
-#define OPTIONAL1 "french/kouza"
-#define OPTIONAL2 "french/kouza2"
-#define OPTIONAL3 "german/kouza"
-#define OPTIONAL4 "german/kouza2"
+#include "mainwindow.h"
 
 QString ScrambleDialog::optional1;
 QString ScrambleDialog::optional2;
@@ -36,61 +32,62 @@ QString ScrambleDialog::optional7;
 QString ScrambleDialog::optional8;
 
 QString ScrambleDialog::opt1[] = {
-		"0953", //まいにちフランス語 入門編
-		"4412", //まいにちフランス語 応用編
-		"0943", //まいにちドイツ語 入門編／初級編
-		"4410", //まいにちドイツ語 応用編
-		"7155",	// Living in Japan
-		"0701",	// やさしい日本語
-		"7629",	// Learn Japanese from the News
-		"7512"	// ニュースで学ぶ「現代英語」
-};
-QString ScrambleDialog::opt2[] = {
-		"0953", //まいにちフランス語 入門編
-		"4412", //まいにちフランス語 応用編
-		"0943", //まいにちドイツ語 入門編／初級編
-		"4410", //まいにちドイツ語 応用編
+		"6805", //小学生の基礎英語
 		"6806", //中学生の基礎英語 レベル1
 		"6807", //中学生の基礎英語 レベル2
 		"6808", //中高生の基礎英語 in English
-		"3064"  //エンジョイ・シンプル・イングリッシュ
+		"0916", // ラジオ英会話
+		"6809", // ラジオビジネス英語
+		"3064", // エンジョイ・シンプル・イングリッシュ
+		"2331"	// 英会話タイムトライアル
+};
+QString ScrambleDialog::opt2[] = {
+		"6806", //中学生の基礎英語 レベル1
+		"6807", //中学生の基礎英語 レベル2
+		"6808", //中高生の基礎英語 in English
+		"0916", // ラジオ英会話
+		"6809", // ラジオビジネス英語
+		"3064", // エンジョイ・シンプル・イングリッシュ
+		"4121", //ボキャブライダー
+		"7512"  //ニュースで学ぶ「現代英語」
 };
 QString ScrambleDialog::opt3[] = {
-		"0953", //まいにちフランス語 入門編
-		"4412", //まいにちフランス語 応用編
-		"0943", //まいにちドイツ語 入門編／初級編
-		"4410", //まいにちドイツ語 応用編
-		"0916", //ラジオ英会話
-		"2331", //英会話タイムトライアル
-		"6809", //ラジオビジネス英語
-		"4121"  //ボキャブライダー
-};
-QString ScrambleDialog::opt4[] = {
-		"0953", //まいにちフランス語 入門編
-		"4412", //まいにちフランス語 応用編
-		"0943", //まいにちドイツ語 入門編／初級編
-		"4410", //まいにちドイツ語 応用編
+		"7155", //Living in Japan
+		"0701", //やさしい日本語
+		"7629", //Learn Japanese from the News
+		"7512", //ニュースで学ぶ「現代英語」
 		"0164", //青春アドベンチャー
 		"0930", //新日曜名作座
 		"8062", //朗読
 		"0058"  //FMシアター
+
+};
+QString ScrambleDialog::opt4[] = {
+		"0953", //まいにちフランス語 入門編
+		"0943", //まいにちドイツ語 入門編／初級編
+		"0946", //まいにちイタリア語 入門編
+		"0948", //まいにちスペイン語 入門編／初級編
+		"0956", //まいにちロシア語 入門編
+		"1893", //ポルトガル語講座 入門
+		"0915", //まいにち中国語
+		"0951"  //まいにちハングル講座
 };
 QString ScrambleDialog::opt5[] = {
-		"0953", //まいにちフランス語 入門編
 		"4412", //まいにちフランス語 応用編
-		"0943", //まいにちドイツ語 入門編／初級編
 		"4410", //まいにちドイツ語 応用編
-		"1928", //カルチャーラジオ 芸術その魅力
-		"1927", //カルチャーラジオ 歴史再発見
-		"1890", //カルチャーラジオ NHKラジオアーカイブス
-		"1940"  //カルチャーラジオ 日曜カルチャー
+		"4411", //まいにちイタリア語 応用編
+		"4413", //まいにちスペイン語 中級編／応用編
+		"4414", //まいにちロシア語 応用編
+		"2769", //ポルトガル語ステップアップ
+		"6581", //ステップアップ中国語
+		"6810"  //ステップアップ ハングル講座
 };
 
 QString ScrambleDialog::opt6[] = {
-		"0953", //まいにちフランス語 入門編
-		"4412", //まいにちフランス語 応用編
-		"0943", //まいにちドイツ語 入門編／初級編
-		"4410", //まいにちドイツ語 応用編
+		"1928", //カルチャーラジオ 芸術その魅力
+		"1927", //カルチャーラジオ 歴史再発見
+		"1890", //カルチャーラジオ NHKラジオアーカイブス
+		"1940", //カルチャーラジオ 日曜カルチャー
 		"6324", //高橋源一郎の飛ぶ教室
 		"1929", //カルチャーラジオ 文学の世界
 		"0442", //音の風景
@@ -101,110 +98,55 @@ ScrambleDialog::ScrambleDialog( QString optional1, QString optional2, QString op
 //ScrambleDialog::ScrambleDialog( QString scramble, QWidget *parent )
 		: QDialog(parent), ui(new Ui::ScrambleDialog) {
     ui->setupUi(this);
-//	ui->scramble->setText( scramble );
-	ui->optional1->setText( optional1 ),
-	ui->optional2->setText( optional2 ),
-	ui->optional3->setText( optional3 ),
-	ui->optional4->setText( optional4 );
-	ui->optional5->setText( optional5 ),
-	ui->optional6->setText( optional6 ),
-	ui->optional7->setText( optional7 ),
-	ui->optional8->setText( optional8 );
+	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
+	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8, NULL };
+	for ( int i = 0 ; i < 8 ; i++ ) Button2[i]->setText( optional[i] );
 	ui->radioButton_9->setChecked(true);
 }
 
 ScrambleDialog::~ScrambleDialog() {
-    delete ui;
+//    delete ui;
 }
 
-//QString ScrambleDialog::scramble() {
-//	return ui->scramble->text();
-//}
-
+QString ScrambleDialog::scramble_set( QString opt, int i ) {
+	QString opt_set[] = { opt1[i], opt2[i], opt3[i], opt4[i], opt5[i], opt6[i] };
+	QAbstractButton*  Button[] = { ui->radioButton, ui->radioButton_1, ui->radioButton_2, ui->radioButton_3, ui->radioButton_4, ui->radioButton_5, NULL };
+	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8, NULL };
+	for ( int i = 0 ; Button[i] != NULL ; i++ ) 
+		if (Button[i]->isChecked())	opt = opt_set[i];
+	if (!(ui->radioButton_9->isChecked())) 	Button2[i]->setText( opt );
+	return opt;
+}
 QString ScrambleDialog::scramble1() {
-	if (ui->radioButton->isChecked())	optional1 = opt1[0];
-	if (ui->radioButton_1->isChecked()) 	optional1 = opt2[0];
-	if (ui->radioButton_2->isChecked()) 	optional1 = opt3[0];
-	if (ui->radioButton_3->isChecked()) 	optional1 = opt4[0];
-	if (ui->radioButton_4->isChecked()) 	optional1 = opt5[0];
-	if (ui->radioButton_5->isChecked()) 	optional1 = opt6[0];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional1->setText( optional1 );
+	optional1 = scramble_set( optional1, 0);
 	return ui->optional1->text();
 }
-
 QString ScrambleDialog::scramble2() {
-	if (ui->radioButton->isChecked()) 	optional2 = opt1[1];
-	if (ui->radioButton_1->isChecked()) 	optional2 = opt2[1];
-	if (ui->radioButton_2->isChecked()) 	optional2 = opt3[1];
-	if (ui->radioButton_3->isChecked())	optional2 = opt4[1];
-	if (ui->radioButton_4->isChecked()) 	optional2 = opt5[1];
-	if (ui->radioButton_5->isChecked()) 	optional2 = opt6[1];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional2->setText( optional2 );
+	optional2 = scramble_set( optional2, 1 );
 	return ui->optional2->text();
 }
-
 QString ScrambleDialog::scramble3() {
-	if (ui->radioButton->isChecked()) 	optional3 = opt1[2];
-	if (ui->radioButton_1->isChecked()) 	optional3 = opt2[2];
-	if (ui->radioButton_2->isChecked()) 	optional3 = opt3[2];
-	if (ui->radioButton_3->isChecked()) 	optional3 = opt4[2];
-	if (ui->radioButton_4->isChecked()) 	optional3 = opt5[2];
-	if (ui->radioButton_5->isChecked()) 	optional3 = opt6[2];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional3->setText( optional3 );
+	optional3 = scramble_set( optional3, 2 );
 	return ui->optional3->text();
 }
-
 QString ScrambleDialog::scramble4() {
-	if (ui->radioButton->isChecked()) 	optional4 = opt1[3];
-	if (ui->radioButton_1->isChecked()) 	optional4 = opt2[3];
-	if (ui->radioButton_2->isChecked()) 	optional4 = opt3[3];
-	if (ui->radioButton_3->isChecked()) 	optional4 = opt4[3];
-	if (ui->radioButton_4->isChecked()) 	optional4 = opt5[3];
-	if (ui->radioButton_5->isChecked()) 	optional4 = opt6[3];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional4->setText( optional4 );
+	optional4 = scramble_set( optional4, 3 );
 	return ui->optional4->text();
 }
-
 QString ScrambleDialog::scramble5() {
-	if (ui->radioButton->isChecked()) 	optional5 = opt1[4];
-	if (ui->radioButton_1->isChecked()) 	optional5 = opt2[4];
-	if (ui->radioButton_2->isChecked()) 	optional5 = opt3[4];
-	if (ui->radioButton_3->isChecked()) 	optional5 = opt4[4];
-	if (ui->radioButton_4->isChecked()) 	optional5 = opt5[4];
-	if (ui->radioButton_5->isChecked()) 	optional5 = opt6[4];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional5->setText( optional5 );
+	optional5 = scramble_set( optional5, 4 );
 	return ui->optional5->text();
 }
-
 QString ScrambleDialog::scramble6() {
-	if (ui->radioButton->isChecked()) 	optional6 = opt1[5];
-	if (ui->radioButton_1->isChecked())	optional6 = opt2[5];
-	if (ui->radioButton_2->isChecked()) 	optional6 = opt3[5];
-	if (ui->radioButton_3->isChecked()) 	optional6 = opt4[5];
-	if (ui->radioButton_4->isChecked()) 	optional6 = opt5[5];
-	if (ui->radioButton_5->isChecked()) 	optional6 = opt6[5];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional6->setText( optional6 );
+	optional6 = scramble_set( optional6, 5 );
 	return ui->optional6->text();
 }
-
 QString ScrambleDialog::scramble7() {
-	if (ui->radioButton->isChecked()) 	optional7 = opt1[6];
-	if (ui->radioButton_1->isChecked()) 	optional7 = opt2[6];
-	if (ui->radioButton_2->isChecked()) 	optional7 = opt3[6];
-	if (ui->radioButton_3->isChecked()) 	optional7 = opt4[6];
-	if (ui->radioButton_4->isChecked()) 	optional7 = opt5[6];
-	if (ui->radioButton_5->isChecked()) 	optional7 = opt6[6];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional7->setText( optional7 );
+	optional7 = scramble_set( optional7, 6 );
 	return ui->optional7->text();
 }
-
 QString ScrambleDialog::scramble8() {
-	if (ui->radioButton->isChecked()) 	optional8 = opt1[7];
-	if (ui->radioButton_1->isChecked()) 	optional8 = opt2[7];
-	if (ui->radioButton_2->isChecked()) 	optional8 = opt3[7];
-	if (ui->radioButton_3->isChecked()) 	optional8 = opt4[7];
-	if (ui->radioButton_4->isChecked()) 	optional8 = opt5[7];
-	if (ui->radioButton_5->isChecked()) 	optional8 = opt6[7];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional8->setText( optional8 );
+	optional8 = scramble_set( optional8, 7 );
 	return ui->optional8->text();
 }
+

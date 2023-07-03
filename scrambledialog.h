@@ -35,7 +35,7 @@ public:
     ~ScrambleDialog();
 //	explicit ScrambleDialog( QString scramble, QWidget *parent = 0 );
 //    ~ScrambleDialog();
-//	QString scramble();
+	QString scramble();
 	QString scramble1();
 	QString scramble2();
 	QString scramble3();
@@ -44,6 +44,7 @@ public:
 	QString scramble6();
 	QString scramble7();
 	QString scramble8();
+	QString scramble_set( QString opt, int i );
 	
 	static QString optional1;
 	static QString optional2;
@@ -60,6 +61,7 @@ public:
 	static QString opt4[];
 	static QString opt5[];
 	static QString opt6[];
+
 
 private:
     Ui::ScrambleDialog *ui;

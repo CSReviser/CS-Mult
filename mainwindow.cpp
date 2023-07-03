@@ -65,38 +65,22 @@
 #define SCRAMBLE_URL2 "http://cdn47.atwikiimg.com/jakago/pub/scramble.xml"
 #define X11_WINDOW_VERTICAL_INCREMENT 5
 
-#define SETTING_OPTIONAL1 "optional1"
-#define SETTING_OPTIONAL2 "optional2"
-#define SETTING_OPTIONAL3 "optional3"
-#define SETTING_OPTIONAL4 "optional4"
-#define SETTING_OPTIONAL5 "optional5"
-#define SETTING_OPTIONAL6 "optional6"
-#define SETTING_OPTIONAL7 "optional7"
-#define SETTING_OPTIONAL8 "optional8"
-#define SETTING_OPT_TITLE1 "opt_title1"
-#define SETTING_OPT_TITLE2 "opt_title2"
-#define SETTING_OPT_TITLE3 "opt_title3"
-#define SETTING_OPT_TITLE4 "opt_title4"
-#define SETTING_OPT_TITLE5 "opt_title5"
-#define SETTING_OPT_TITLE6 "opt_title6"
-#define SETTING_OPT_TITLE7 "opt_title7"
-#define SETTING_OPT_TITLE8 "opt_title8"
-#define OPTIONAL1 "7155"	// Living in Japan
-#define OPTIONAL2 "0701"	// やさしい日本語
-#define OPTIONAL3 "7629"	// Learn Japanese from the News
-#define OPTIONAL4 "7512"	// ニュースで学ぶ「現代英語」
-#define OPTIONAL5 "0946"	// まいにちイタリア語 入門編
-#define OPTIONAL6 "4411"	// まいにちイタリア語 応用編
-#define OPTIONAL7 "0948"	// まいにちスペイン語 入門編／初級編
-#define OPTIONAL8 "4413"	// まいにちスペイン語 中級編／応用編
-#define Program_TITLE1 "Living in Japan"
-#define Program_TITLE2 "やさしい日本語"
-#define Program_TITLE3 "Learn Japanese from the News"
-#define Program_TITLE4 "ニュースで学ぶ「現代英語」"
-#define Program_TITLE5 "任意らじる聴き逃し番組５"
-#define Program_TITLE6 "任意らじる聴き逃し番組６"
-#define Program_TITLE7 "任意らじる聴き逃し番組７"
-#define Program_TITLE8 "任意らじる聴き逃し番組８"
+#define OPTIONAL1 "6805_01"	// 小学生の基礎英語
+#define OPTIONAL2 "6806_01"	// 中学生の基礎英語 レベル1
+#define OPTIONAL3 "6807_01"	// 中学生の基礎英語 レベル2
+#define OPTIONAL4 "6808_01"	// 中高生の基礎英語 in English
+#define OPTIONAL5 "0916_01"	// ラジオ英会話
+#define OPTIONAL6 "6809_01"	// ラジオビジネス英語
+#define OPTIONAL7 "3064_01"	// エンジョイ・シンプル・イングリッシュ
+#define OPTIONAL8 "2331_01"	// 英会話タイムトライアル
+#define Program_TITLE1 "小学生の基礎英語"
+#define Program_TITLE2 "中学生の基礎英語 レベル１"
+#define Program_TITLE3 "中学生の基礎英語 レベル２"
+#define Program_TITLE4 "中高生の基礎英語 in English"
+#define Program_TITLE5 "ラジオ英会話"
+#define Program_TITLE6 "ラジオビジネス英語"
+#define Program_TITLE7 "エンジョイ・シンプル・イングリッシュ"
+#define Program_TITLE8 "英会話タイムトライアル"
 
 #ifdef QT4_QT5_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
@@ -123,7 +107,7 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( " (2023/02/23)" ); 
+			result = QString( " (2023/07/02)" ); 
 		}
 		return result;
 	}
@@ -134,8 +118,7 @@ QString MainWindow::ini_file_path;
 QString MainWindow::scramble;
 QString MainWindow::scrambleUrl1;
 QString MainWindow::scrambleUrl2;
-QString MainWindow::OPTIONAL[] = { "0953", "0943", "0946", "0948" };
-QString MainWindow::optional[] = { "0953", "0943", "0946", "0948" };
+QString MainWindow::optional[] = {"0953", "0943", "0946", "0948", "0953", "0943", "0946", "0948"};
 QString MainWindow::optional1;
 QString MainWindow::optional2;
 QString MainWindow::optional3;
@@ -144,10 +127,6 @@ QString MainWindow::optional5;
 QString MainWindow::optional6;
 QString MainWindow::optional7;
 QString MainWindow::optional8;
-QString MainWindow::SETTING_OPTIONAL[] = { "optional1", "optional2", "optional3", "optional4" };
-QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4" };
-QString MainWindow::program_title[] = { "任意らじる聴き逃し番組１", "任意らじる聴き逃し番組２", "任意らじる聴き逃し番組３", "任意らじる聴き逃し番組４" };
-QString MainWindow::Program_TITLE[] = { "任意らじる聴き逃し番組１", "任意らじる聴き逃し番組２", "任意らじる聴き逃し番組３", "任意らじる聴き逃し番組４" };
 QString MainWindow::program_title1;
 QString MainWindow::program_title2;
 QString MainWindow::program_title3;
@@ -347,6 +326,36 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->comboBox_extension, "audio_extension", "m4a" },	// 拡張子のデフォルトを「mp3」から「m4a」に変更。
 		{ NULL, NULL, false }
 	};
+	
+	typedef struct CheckBox2 {
+		QAbstractButton* checkBox;
+		QString titleKey;
+		QVariant defaultValue;
+		QString idKey;
+		QVariant defaul;
+		QString id;
+	} CheckBox2;
+	CheckBox2 checkBoxes2[] = {
+		{ ui->toolButton_optional1, "opt_title1", Program_TITLE1, "optional1", OPTIONAL1, optional1 },
+		{ ui->toolButton_optional2, "opt_title2", Program_TITLE2, "optional2", OPTIONAL2, optional2 },
+		{ ui->toolButton_optional3, "opt_title3", Program_TITLE3, "optional3", OPTIONAL3, optional3 },
+		{ ui->toolButton_optional4, "opt_title4", Program_TITLE4, "optional4", OPTIONAL4, optional4 },
+		{ ui->toolButton_optional5, "opt_title5", Program_TITLE5, "optional5", OPTIONAL5, optional5 },
+		{ ui->toolButton_optional6, "opt_title6", Program_TITLE6, "optional6", OPTIONAL6, optional6 },
+		{ ui->toolButton_optional7, "opt_title7", Program_TITLE7, "optional7", OPTIONAL7, optional7 },
+		{ ui->toolButton_optional8, "opt_title8", Program_TITLE8, "optional8", OPTIONAL8, optional8 },
+		{ ui->toolButton_french, "french_buttom_title", "まいにちフランス語【月/火/水】", "", "", "" },
+		{ ui->toolButton_french2, "french2_buttom_title", "まいにちフランス語【木/金】", "", "", "" },
+		{ ui->toolButton_italian, "italian_buttom_title", "まいにちイタリア語【月/火/水】", "", "", "" },
+		{ ui->toolButton_italian2, "italian2_buttom_title", "まいにちイタリア語【木/金】", "", "", "" },
+		{ ui->toolButton_german, "german_buttom_title", "まいにちドイツ語【月/火/水】", "", "", "" },
+		{ ui->toolButton_german2, "german2_buttom_title", "まいにちドイツ語【木/金】", "", "", "" },
+		{ ui->toolButton_spanish, "spanish_buttom_title", "まいにちスペイン語【月/火/水】", "", "", "" },
+		{ ui->toolButton_spanish2, "spanish2_buttom_title", "まいにちスペイン語【木/金】", "", "", "" },
+		{ ui->toolButton_russian, "russian_buttom_title", "まいにちロシア語【月/火/水】", "", "", "" },
+		{ ui->toolButton_russian2, "russian2_buttom_title", "まいにちロシア語【木/金】", "", "", "" },
+		{ NULL, NULL, "", NULL, "", "" }
+	};
 
 #if !defined( QT4_QT5_MAC )
 	QSettings settings( Utility::applicationBundlePath() + INI_FILE, QSettings::IniFormat );
@@ -409,68 +418,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		saved = settings.value( SETTING_SCRAMBLE_URL2 );
 		scrambleUrl2 = saved.type() == QVariant::Invalid ? SCRAMBLE_URL2 : saved.toString();
 		
-		saved = settings.value( SETTING_OPTIONAL1 );
-		optional1 = saved.type() == QVariant::Invalid ? OPTIONAL1 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL2 );
-		optional2 = saved.type() == QVariant::Invalid ? OPTIONAL2 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL3 );
-		optional3 = saved.type() == QVariant::Invalid ? OPTIONAL3 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL4 );
-		optional4 = saved.type() == QVariant::Invalid ? OPTIONAL4 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL5 );
-		optional5 = saved.type() == QVariant::Invalid ? OPTIONAL5 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL6 );
-		optional6 = saved.type() == QVariant::Invalid ? OPTIONAL6 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL7 );
-		optional7 = saved.type() == QVariant::Invalid ? OPTIONAL7 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL8 );
-		optional8 = saved.type() == QVariant::Invalid ? OPTIONAL8 : saved.toString();
-
-		saved = settings.value( SETTING_OPT_TITLE1 );
-		program_title1 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE1 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE2 );
-		program_title2 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE2 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE3 );
-		program_title3 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE3 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE4 );
-		program_title4 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE4 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE5 );
-		program_title5 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE5 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE6 );
-		program_title6 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE6 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE7 );
-		program_title7 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE7 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE8 );
-		program_title8 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE8 ) : saved.toString();
-
-		ui->toolButton_optional1->setText( QString( program_title1 ) );
-		ui->toolButton_optional2->setText( QString( program_title2 ) );
-		ui->toolButton_optional3->setText( QString( program_title3 ) );
-		ui->toolButton_optional4->setText( QString( program_title4 ) );
-		ui->toolButton_optional5->setText( QString( program_title5 ) );
-		ui->toolButton_optional6->setText( QString( program_title6 ) );
-		ui->toolButton_optional7->setText( QString( program_title7 ) );
-		ui->toolButton_optional8->setText( QString( program_title8 ) );
-
-//		QString opt_TITLE1 = getJsonData( optional1 );
-//		QString opt_TITLE2 = getJsonData( optional2 );
-//		QString opt_TITLE3 = getJsonData( optional3 );
-//		QString opt_TITLE4 = getJsonData( optional4 );
-		
-//		program_title1 = opt_TITLE1;
-//		program_title2 = opt_TITLE2;
-//		program_title3 = opt_TITLE3;
-//		program_title4 = opt_TITLE4;
-//		
-		ui->toolButton_optional1->setText( QString( program_title1 ) );
-		ui->toolButton_optional2->setText( QString( program_title2 ) );
-		ui->toolButton_optional3->setText( QString( program_title3 ) );
-		ui->toolButton_optional4->setText( QString( program_title4 ) );
-		ui->toolButton_optional5->setText( QString( program_title5 ) );
-		ui->toolButton_optional6->setText( QString( program_title6 ) );
-		ui->toolButton_optional7->setText( QString( program_title7 ) );
-		ui->toolButton_optional8->setText( QString( program_title8 ) );
-
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
@@ -479,6 +426,22 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
 			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
+		}
+		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
+			checkBoxes2[i].checkBox->setText( settings.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString() );
+			if ( checkBoxes2[i].idKey == NULL ) continue;
+			optional[i] = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString();
+			switch ( i ) {
+				case 0: optional1 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 1: optional2 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 2: optional3 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 3: optional4 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 4: optional5 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 5: optional6 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 6: optional7 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 7: optional8 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				default: break;
+			}
 		}
 	} else {	// 設定書き出し
 #if !defined( QT4_QT5_MAC )
@@ -494,24 +457,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		settings.setValue( SETTING_SCRAMBLE_URL1, scrambleUrl1 );
 		settings.setValue( SETTING_SCRAMBLE_URL2, scrambleUrl2 );
 		
-		settings.setValue( SETTING_OPTIONAL1, optional1 );
-		settings.setValue( SETTING_OPTIONAL2, optional2 );
-		settings.setValue( SETTING_OPTIONAL3, optional3 );
-		settings.setValue( SETTING_OPTIONAL4, optional4 );
-		settings.setValue( SETTING_OPTIONAL4, optional4 );
-		settings.setValue( SETTING_OPTIONAL5, optional5 );
-		settings.setValue( SETTING_OPTIONAL6, optional6 );
-		settings.setValue( SETTING_OPTIONAL7, optional7 );
-		settings.setValue( SETTING_OPTIONAL8, optional8 );
-		settings.setValue( SETTING_OPT_TITLE1, program_title1 );
-		settings.setValue( SETTING_OPT_TITLE2, program_title2 );
-		settings.setValue( SETTING_OPT_TITLE3, program_title3 );
-		settings.setValue( SETTING_OPT_TITLE4, program_title4 );
-		settings.setValue( SETTING_OPT_TITLE5, program_title5 );
-		settings.setValue( SETTING_OPT_TITLE6, program_title6 );
-		settings.setValue( SETTING_OPT_TITLE7, program_title7 );
-		settings.setValue( SETTING_OPT_TITLE8, program_title8 );
-		
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
 		}
@@ -519,6 +464,11 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ )
 			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText() );
+		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
+			settings.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text() );
+			if ( checkBoxes2[i].idKey == NULL ) continue;
+			settings.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
+		}
 	}
 
 	settings.endGroup();
@@ -549,49 +499,40 @@ void MainWindow::customizeScramble() {
 //	scramble = dialog.scramble();
 
 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
+//	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
+	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, NULL };
     if (dialog.exec() ) {
-	optional1 = dialog.scramble1();
-	optional2 = dialog.scramble2();
-	optional3 = dialog.scramble3();
-	optional4 = dialog.scramble4();
-	optional5 = dialog.scramble5();
-	optional6 = dialog.scramble6();
-	optional7 = dialog.scramble7();
-	optional8 = dialog.scramble8();
-	
-	QString opt_TITLE1 = getJsonData( optional1.left(4) );
-	QString opt_TITLE2 = getJsonData( optional2.left(4) );
-	QString opt_TITLE3 = getJsonData( optional3.left(4) );
-	QString opt_TITLE4 = getJsonData( optional4.left(4) );
-	QString opt_TITLE5 = getJsonData( optional5.left(4) );
-	QString opt_TITLE6 = getJsonData( optional6.left(4) );
-	QString opt_TITLE7 = getJsonData( optional7.left(4) );
-	QString opt_TITLE8 = getJsonData( optional8.left(4) );
-	
-	program_title1 = opt_TITLE1;
-	ui->toolButton_optional1->setChecked(false);
-	ui->toolButton_optional1->setText( QString( program_title1 ) );
-	program_title2 = opt_TITLE2;
-	ui->toolButton_optional2->setChecked(false);
-	ui->toolButton_optional2->setText( QString( program_title2 ) );
-	program_title3 = opt_TITLE3;
-	ui->toolButton_optional3->setChecked(false);
-	ui->toolButton_optional3->setText( QString( program_title3 ) );
-	program_title4 = opt_TITLE4;
-	ui->toolButton_optional4->setChecked(false);
-	ui->toolButton_optional4->setText( QString( program_title4 ) );
-	program_title5 = opt_TITLE5;
-	ui->toolButton_optional5->setChecked(false);
-	ui->toolButton_optional5->setText( QString( program_title5 ) );
-	program_title6 = opt_TITLE6;
-	ui->toolButton_optional6->setChecked(false);
-	ui->toolButton_optional6->setText( QString( program_title6 ) );
-	program_title7 = opt_TITLE7;
-	ui->toolButton_optional7->setChecked(false);
-	ui->toolButton_optional7->setText( QString( program_title7 ) );
-	program_title8 = opt_TITLE8;
-	ui->toolButton_optional8->setChecked(false);
-	ui->toolButton_optional8->setText( QString( program_title8 ) );
+    	QRegExp r1( "[0-9]{4}" );
+	for ( int i = 0; optional_temp[i] != NULL; i++ ) 
+	    	if ( r1.exactMatch(optional_temp[i]) ) optional_temp[i] += "_01";
+
+	QString scramble_temp[] = { dialog.scramble1(), dialog.scramble2(), dialog.scramble3(), dialog.scramble4(), dialog.scramble5(), dialog.scramble6(), dialog.scramble7(), dialog.scramble8(), NULL };	
+//	QString scramble_temp[] = { optional[0], optional[1], optional[2], optional[3], optional[4], optional[5], optional[6], optional[7], NULL };	
+	QString title[8];
+	for ( int i = 0; scramble_temp[i] != NULL; i++ ) {
+		optional[i] = scramble_temp[i];
+		if ( r1.exactMatch(optional[i]) ) optional[i] += "_01" ;
+		title[i] = getJsonData( optional[i] );
+	}
+	optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
+	optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
+	program_title1 = title[0];  program_title2 = title[1]; program_title3 = title[2]; program_title4 = title[3];
+	program_title5 = title[4];  program_title6 = title[5]; program_title7 = title[6]; program_title8 = title[7];
+
+	QString program_title[] = { program_title1, program_title2, program_title3, program_title4, program_title5, program_title6, program_title7, program_title8, NULL };
+	QAbstractButton* checkboxx[] = { ui->toolButton_optional1, ui->toolButton_optional2,
+					 ui->toolButton_optional3, ui->toolButton_optional4,
+					 ui->toolButton_optional5, ui->toolButton_optional6,
+					 ui->toolButton_optional7, ui->toolButton_optional8,
+					 NULL
+		 	};
+	for ( int i = 0; program_title[i] != NULL; i++ ) {
+		if ( optional[i] != optional_temp[i] ) {
+			checkboxx[i]->setChecked(false);
+			checkboxx[i]->setText( QString( program_title[i] ) );
+		}
+	}
+   	setButtomTitle();
     }
 }
 
@@ -621,7 +562,7 @@ QString MainWindow::getJsonData( QString url ) {
     	QEventLoop eventLoop;
 	QNetworkAccessManager mgr;
  	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-	const QString jsonUrl = json_prefix + url + "/bangumi_" + url + "_01.json";
+	const QString jsonUrl = json_prefix + url.left(4) + "/bangumi_" + url + ".json";
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
 	req.setUrl(url_json);
@@ -637,6 +578,7 @@ QString MainWindow::getJsonData( QString url ) {
 		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
 		QJsonObject objx2 = jsonObject[ "main" ].toObject();
 		attribute = objx2[ "program_name" ].toString().replace( "　", " " );
+		if ( !(objx2[ "corner_name" ].toString().isNull()) ) attribute = objx2[ "corner_name" ].toString().replace( "　", " " );
 		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
 		        attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
 		    }
@@ -645,6 +587,38 @@ QString MainWindow::getJsonData( QString url ) {
 		    }
 	}
 	return attribute;
+}
+
+void MainWindow::setButtomTitle() {
+
+	QString json_paths2[] = { 
+		"0953_01", "4412_01",
+		"0943_01", "4410_01",
+		"0948_01", "4413_01",
+		"0946_01", "4411_01", 
+		"0956_01", "4414_01", 
+		NULL
+	};
+
+	QAbstractButton* checkbox[] = {
+		ui->toolButton_french, ui->toolButton_french2, 
+		ui->toolButton_german, ui->toolButton_german2,
+		ui->toolButton_spanish, ui->toolButton_spanish2,
+		ui->toolButton_italian, ui->toolButton_italian2,
+		ui->toolButton_russian, ui->toolButton_russian2,
+		NULL
+	};
+	
+	bool chk_status;
+	for ( int i = 0; json_paths2[i] != NULL; i++ ) {
+	if ( checkbox[i]->text().remove( "✓ " ) == getJsonData( json_paths2[i] )) continue;
+	if ( checkbox[i]->isChecked()) chk_status = true; else chk_status = false;
+	checkbox[i]->setChecked( false );
+	checkbox[i]->setText( QString( getJsonData( json_paths2[i] ) ) );
+	if ( chk_status ) checkbox[i]->setChecked( chk_status );
+	}
+
+	return;
 }
 
 void MainWindow::toggled( bool checked ) {

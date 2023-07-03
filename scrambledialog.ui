@@ -156,7 +156,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>アジア、他（露、中、韓、阿、葡）</string>
+     <string>英語講座２</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_2">
@@ -169,7 +169,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>入門編、初級編</string>
+     <string>日本語</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_9">
@@ -195,7 +195,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>応用編、ステップアップ</string>
+     <string>入門編、初級編</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_4">
@@ -208,7 +208,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>その他１</string>
+     <string>応用編、ステップアップ</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_5">
@@ -221,7 +221,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>その他２</string>
+     <string>その他</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton">
@@ -234,7 +234,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>欧州（仏、独、伊、西）</string>
+     <string>英語講座１（初期値）</string>
     </property>
    </widget>
   </widget>
