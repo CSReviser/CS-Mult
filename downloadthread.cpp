@@ -950,7 +950,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	int month = hdate.left( 2 ).toInt();
 	int year = nendo.right( 4 ).toInt();
 	int day = hdate.mid( 3, 2 ).toInt();
-	if ( 2022 > year ) return false;
+//	if ( 2022 > year ) return false;
 	int year1 = QDate::currentDate().year();
 
 	if ( month <= 4 && QDate::currentDate().year() > year )
@@ -1201,22 +1201,6 @@ void DownloadThread::run() {
 
 	for ( int i = 0; checkbox[i] && !isCanceled; i++ ) {
 
-//		optional1 = MainWindow::optional1;
-//		optional2 = MainWindow::optional2;
-//		optional3 = MainWindow::optional3;
-//		optional4 = MainWindow::optional4;
-//		optional5 = MainWindow::optional5;
-//		optional6 = MainWindow::optional6;
-//		optional7 = MainWindow::optional7;
-//		optional8 = MainWindow::optional8;
-//		if ( paths[i].right( 9 ).startsWith("optional1") ) json_paths[i] = optional1;
-//		if ( paths[i].right( 9 ).startsWith("optional2") ) json_paths[i] = optional2;
-//		if ( paths[i].right( 9 ).startsWith("optional3") ) json_paths[i] = optional3;
-//		if ( paths[i].right( 9 ).startsWith("optional4") ) json_paths[i] = optional4;
-//		if ( paths[i].right( 9 ).startsWith("optional5") ) json_paths[i] = optional5;
-//		if ( paths[i].right( 9 ).startsWith("optional6") ) json_paths[i] = optional6;
-//		if ( paths[i].right( 9 ).startsWith("optional7") ) json_paths[i] = optional7;
-//		if ( paths[i].right( 9 ).startsWith("optional8") ) json_paths[i] = optional8;
 		QString optional[] = { MainWindow::optional1, MainWindow::optional2, MainWindow::optional3, MainWindow::optional4, MainWindow::optional5, MainWindow::optional6, MainWindow::optional7, MainWindow::optional8 };
 		for ( int j = 0; optional_data[j] != NULL; j++ ) {
 			if ( paths[i].right( 9 ).startsWith( optional_data[j] ) ) json_paths[i] = optional[j];

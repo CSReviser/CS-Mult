@@ -107,7 +107,7 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( " (2023/07/02)" ); 
+			result = QString( " (2023/07/05)" ); 
 		}
 		return result;
 	}
@@ -498,16 +498,14 @@ void MainWindow::customizeScramble() {
 //	dialog.exec();
 //	scramble = dialog.scramble();
 
-	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
-//	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, NULL };
+	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
     if (dialog.exec() ) {
     	QRegExp r1( "[0-9]{4}" );
 	for ( int i = 0; optional_temp[i] != NULL; i++ ) 
 	    	if ( r1.exactMatch(optional_temp[i]) ) optional_temp[i] += "_01";
 
 	QString scramble_temp[] = { dialog.scramble1(), dialog.scramble2(), dialog.scramble3(), dialog.scramble4(), dialog.scramble5(), dialog.scramble6(), dialog.scramble7(), dialog.scramble8(), NULL };	
-//	QString scramble_temp[] = { optional[0], optional[1], optional[2], optional[3], optional[4], optional[5], optional[6], optional[7], NULL };	
 	QString title[8];
 	for ( int i = 0; scramble_temp[i] != NULL; i++ ) {
 		optional[i] = scramble_temp[i];
@@ -528,10 +526,13 @@ void MainWindow::customizeScramble() {
 		 	};
 	for ( int i = 0; program_title[i] != NULL; i++ ) {
 		if ( optional[i] != optional_temp[i] ) {
-			checkboxx[i]->setChecked(false);
-			checkboxx[i]->setText( QString( program_title[i] ) );
+				checkboxx[i]->setChecked(false);
+				checkboxx[i]->setText( QString( program_title[i] ) );
 		}
 	}
+	optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
+	optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
+ 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
    	setButtomTitle();
     }
 }
@@ -562,6 +563,8 @@ QString MainWindow::getJsonData( QString url ) {
     	QEventLoop eventLoop;
 	QNetworkAccessManager mgr;
  	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+ 	QRegExp r1( "[0-9]{4}" );
+    	if ( r1.exactMatch( url ) ) url += "_01";
 	const QString jsonUrl = json_prefix + url.left(4) + "/bangumi_" + url + ".json";
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
@@ -585,6 +588,7 @@ QString MainWindow::getJsonData( QString url ) {
 		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
 		        attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
 		    }
+		attribute = attribute.left( 20 );
 	}
 	return attribute;
 }

@@ -65,6 +65,7 @@ public:
 
 private:
     Ui::ScrambleDialog *ui;
+	QString getJsonData( QString url );
 };
 
 #endif // SCRAMBLEDIALOG_H

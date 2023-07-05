@@ -21,6 +21,14 @@
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
 #include "mainwindow.h"
+#include <QUrl>
+#include <QUrlQuery>
+#include <QtNetwork>
+#include <QTemporaryFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 QString ScrambleDialog::optional1;
 QString ScrambleDialog::optional2;
@@ -109,12 +117,15 @@ ScrambleDialog::~ScrambleDialog() {
 }
 
 QString ScrambleDialog::scramble_set( QString opt, int i ) {
+	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
 	QString opt_set[] = { opt1[i], opt2[i], opt3[i], opt4[i], opt5[i], opt6[i] };
 	QAbstractButton*  Button[] = { ui->radioButton, ui->radioButton_1, ui->radioButton_2, ui->radioButton_3, ui->radioButton_4, ui->radioButton_5, NULL };
 	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8, NULL };
-	for ( int i = 0 ; Button[i] != NULL ; i++ ) 
-		if (Button[i]->isChecked())	opt = opt_set[i];
-	if (!(ui->radioButton_9->isChecked())) 	Button2[i]->setText( opt );
+	for ( int j = 0 ; Button[j] != NULL ; j++ ) 
+		if (Button[j]->isChecked())	opt = opt_set[j];
+	if (!(ui->radioButton_9->isChecked())) Button2[i]->setText( opt );
+	if ( ui->radioButton_9->isChecked() && getJsonData( Button2[i]->text() ) == "" ) { Button2[i]->setText( opt ); }
+//		else  { Button2[i]->setText( opt ); }
 	return opt;
 }
 QString ScrambleDialog::scramble1() {
@@ -148,5 +159,39 @@ QString ScrambleDialog::scramble7() {
 QString ScrambleDialog::scramble8() {
 	optional8 = scramble_set( optional8, 7 );
 	return ui->optional8->text();
+}
+QString ScrambleDialog::getJsonData( QString url ) {
+	QString attribute;
+	attribute.clear() ;
+    	QEventLoop eventLoop;
+	QNetworkAccessManager mgr;
+ 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+ 	QRegExp r1( "[0-9]{4}" );
+    	if ( r1.exactMatch( url ) ) url += "_01";
+	const QString jsonUrl = "https://www.nhk.or.jp/radioondemand/json/" + url.left(4) + "/bangumi_" + url + ".json";
+	QUrl url_json( jsonUrl );
+	QNetworkRequest req;
+	req.setUrl(url_json);
+	QNetworkReply *reply = mgr.get(req);
+	eventLoop.exec(); 
+	
+	if (reply->error() == QNetworkReply::NoError) {
+		QString strReply = (QString)reply->readAll();
+		QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+		QJsonObject jsonObject = jsonResponse.object();
+		QJsonObject jsonObj = jsonResponse.object();
+    
+		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
+		QJsonObject objx2 = jsonObject[ "main" ].toObject();
+		attribute = objx2[ "program_name" ].toString().replace( "　", " " );
+		if ( !(objx2[ "corner_name" ].toString().isNull()) ) attribute = objx2[ "corner_name" ].toString().replace( "　", " " );
+		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		        attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
+		    }
+		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		        attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
+		    }
+	}
+	return attribute;
 }
 

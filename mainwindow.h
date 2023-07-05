@@ -86,6 +86,8 @@ public:
 	static QString program_title7;
 	static QString program_title8;
 	static QString no_write_ini;
+	
+	QString getJsonData( QString url );
 
 protected:
 	virtual void closeEvent( QCloseEvent *event );
@@ -105,7 +107,6 @@ private slots:
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
-	QString getJsonData( QString url );
 	Ui::MainWindowClass *ui;
 	DownloadThread* downloadThread;
 	QMenu* customizeMenu;
