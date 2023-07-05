@@ -8,11 +8,11 @@ on:
 jobs:
   build:
 
-    runs-on: macos-12
+    runs-on: macos-11
 
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v3.2.1
       with:
         modules: 'qtcharts qtscript qtwebengine'
         
