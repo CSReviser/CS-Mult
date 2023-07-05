@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3.2.1
-#      with:
+      uses: jurplel/install-qt-action@v2.14.0
+      with:
 #        setup-python: 'false'
-#        modules: 'qtcharts qtscript qtwebengine'
+        modules: 'qtcharts qtscript qtwebengine'
         
     - uses: actions/checkout@v3
     - name: qmake
