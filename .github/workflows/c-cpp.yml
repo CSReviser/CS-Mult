@@ -15,7 +15,7 @@ jobs:
       uses: jurplel/install-qt-action@v2.14.0
       with:
 #        setup-python: 'false'
-        version: '6.2.*'
+        version: '5.15.2'
         modules: 'qtcharts qtscript qtwebengine'
         
     - uses: actions/checkout@v3
