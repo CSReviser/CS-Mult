@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3.2.1
+      uses: jurplel/install-qt-action@v4
       with:
         modules: 'qtcharts qtscript qtwebengine'
         
