@@ -63,15 +63,31 @@ public:
 	static QString scramble;
 	static QString scrambleUrl1;
 	static QString scrambleUrl2;
+	static QString SETTING_OPTIONAL[];
+	static QString SETTING_OPT_TITLE[]; 
+	static QString Program_TITLE[]; 
+	static QString OPTIONAL[];
+	static QString optional[];
 	static QString optional1;
 	static QString optional2;
 	static QString optional3;
 	static QString optional4;
+	static QString optional5;
+	static QString optional6;
+	static QString optional7;
+	static QString optional8;
+	static QString program_title[];
 	static QString program_title1;
 	static QString program_title2;
 	static QString program_title3;
 	static QString program_title4;
+	static QString program_title5;
+	static QString program_title6;
+	static QString program_title7;
+	static QString program_title8;
 	static QString no_write_ini;
+	
+	QString getJsonData( QString url );
 
 protected:
 	virtual void closeEvent( QCloseEvent *event );
@@ -87,10 +103,10 @@ private slots:
 	void customizeSaveFolder();
 	void customizeScramble();
 	void closeEvent2( );
+	void setButtomTitle();
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
-	QString getJsonData( QString url );
 	Ui::MainWindowClass *ui;
 	DownloadThread* downloadThread;
 	QMenu* customizeMenu;

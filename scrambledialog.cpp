@@ -20,115 +20,178 @@
 
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
-
-#define OPTIONAL1 "french/kouza"
-#define OPTIONAL2 "french/kouza2"
-#define OPTIONAL3 "german/kouza"
-#define OPTIONAL4 "german/kouza2"
+#include "mainwindow.h"
+#include <QUrl>
+#include <QUrlQuery>
+#include <QtNetwork>
+#include <QTemporaryFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 QString ScrambleDialog::optional1;
 QString ScrambleDialog::optional2;
 QString ScrambleDialog::optional3;
 QString ScrambleDialog::optional4;
+QString ScrambleDialog::optional5;
+QString ScrambleDialog::optional6;
+QString ScrambleDialog::optional7;
+QString ScrambleDialog::optional8;
 
 QString ScrambleDialog::opt1[] = {
-		"7155",	// Living in Japan
-		"0701",	// やさしい日本語
-		"7629",	// Learn Japanese from the News
-		"7512"	// ニュースで学ぶ「現代英語」
+		"6805", //小学生の基礎英語
+		"6806", //中学生の基礎英語 レベル1
+		"6807", //中学生の基礎英語 レベル2
+		"6808", //中高生の基礎英語 in English
+		"0916", // ラジオ英会話
+		"6809", // ラジオビジネス英語
+		"3064", // エンジョイ・シンプル・イングリッシュ
+		"2331"	// 英会話タイムトライアル
 };
 QString ScrambleDialog::opt2[] = {
 		"6806", //中学生の基礎英語 レベル1
 		"6807", //中学生の基礎英語 レベル2
 		"6808", //中高生の基礎英語 in English
-		"3064"  //エンジョイ・シンプル・イングリッシュ
+		"0916", // ラジオ英会話
+		"6809", // ラジオビジネス英語
+		"3064", // エンジョイ・シンプル・イングリッシュ
+		"4121", //ボキャブライダー
+		"7512"  //ニュースで学ぶ「現代英語」
 };
 QString ScrambleDialog::opt3[] = {
-		"0916", //ラジオ英会話
-		"2331", //英会話タイムトライアル
-		"6809", //ラジオビジネス英語
-		"4121"  //ボキャブライダー
-};
-QString ScrambleDialog::opt4[] = {
+		"7155", //Living in Japan
+		"0701", //やさしい日本語
+		"7629", //Learn Japanese from the News
+		"7512", //ニュースで学ぶ「現代英語」
 		"0164", //青春アドベンチャー
 		"0930", //新日曜名作座
 		"8062", //朗読
 		"0058"  //FMシアター
+
+};
+QString ScrambleDialog::opt4[] = {
+		"0953", //まいにちフランス語 入門編
+		"0943", //まいにちドイツ語 入門編／初級編
+		"0946", //まいにちイタリア語 入門編
+		"0948", //まいにちスペイン語 入門編／初級編
+		"0956", //まいにちロシア語 入門編
+		"1893", //ポルトガル語講座 入門
+		"0915", //まいにち中国語
+		"0951"  //まいにちハングル講座
 };
 QString ScrambleDialog::opt5[] = {
-		"1928", //カルチャーラジオ 芸術その魅力
-		"1927", //カルチャーラジオ 歴史再発見
-		"1890", //カルチャーラジオ NHKラジオアーカイブス
-		"1940"  //カルチャーラジオ 日曜カルチャー
+		"4412", //まいにちフランス語 応用編
+		"4410", //まいにちドイツ語 応用編
+		"4411", //まいにちイタリア語 応用編
+		"4413", //まいにちスペイン語 中級編／応用編
+		"4414", //まいにちロシア語 応用編
+		"2769", //ポルトガル語ステップアップ
+		"6581", //ステップアップ中国語
+		"6810"  //ステップアップ ハングル講座
 };
 
 QString ScrambleDialog::opt6[] = {
+		"1928", //カルチャーラジオ 芸術その魅力
+		"1927", //カルチャーラジオ 歴史再発見
+		"1890", //カルチャーラジオ NHKラジオアーカイブス
+		"1940", //カルチャーラジオ 日曜カルチャー
 		"6324", //高橋源一郎の飛ぶ教室
 		"1929", //カルチャーラジオ 文学の世界
 		"0442", //音の風景
 		"1928"  //おしゃべりな古典教室
 };
 
-ScrambleDialog::ScrambleDialog( QString optional1, QString optional2, QString optional3, QString optional4, QWidget *parent )
+ScrambleDialog::ScrambleDialog( QString optional1, QString optional2, QString optional3, QString optional4, QString optional5, QString optional6, QString optional7, QString optional8, QWidget *parent )
 //ScrambleDialog::ScrambleDialog( QString scramble, QWidget *parent )
 		: QDialog(parent), ui(new Ui::ScrambleDialog) {
     ui->setupUi(this);
-//	ui->scramble->setText( scramble );
-	ui->optional1->setText( optional1 ),
-	ui->optional2->setText( optional2 ),
-	ui->optional3->setText( optional3 ),
-	ui->optional4->setText( optional4 );
+	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
+	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8, NULL };
+	for ( int i = 0 ; i < 8 ; i++ ) Button2[i]->setText( optional[i] );
+	ui->radioButton_9->setChecked(true);
 }
 
 ScrambleDialog::~ScrambleDialog() {
-    delete ui;
+//    delete ui;
 }
 
-//QString ScrambleDialog::scramble() {
-//	return ui->scramble->text();
-//}
-
+QString ScrambleDialog::scramble_set( QString opt, int i ) {
+	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
+	QString opt_set[] = { opt1[i], opt2[i], opt3[i], opt4[i], opt5[i], opt6[i] };
+	QAbstractButton*  Button[] = { ui->radioButton, ui->radioButton_1, ui->radioButton_2, ui->radioButton_3, ui->radioButton_4, ui->radioButton_5, NULL };
+	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8, NULL };
+	for ( int j = 0 ; Button[j] != NULL ; j++ ) 
+		if (Button[j]->isChecked())	opt = opt_set[j];
+	if (!(ui->radioButton_9->isChecked())) Button2[i]->setText( opt );
+	if ( ui->radioButton_9->isChecked() && getJsonData( Button2[i]->text() ) == "" ) { Button2[i]->setText( opt ); }
+//		else  { Button2[i]->setText( opt ); }
+	return opt;
+}
 QString ScrambleDialog::scramble1() {
-	if (ui->radioButton->isChecked())	optional1 = opt1[0];
-	if (ui->radioButton_1->isChecked()) 	optional1 = opt2[0];
-	if (ui->radioButton_2->isChecked()) 	optional1 = opt3[0];
-	if (ui->radioButton_3->isChecked()) 	optional1 = opt4[0];
-	if (ui->radioButton_4->isChecked()) 	optional1 = opt5[0];
-	if (ui->radioButton_5->isChecked()) 	optional1 = opt6[0];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional1->setText( optional1 );
+	optional1 = scramble_set( optional1, 0);
 	return ui->optional1->text();
 }
-
 QString ScrambleDialog::scramble2() {
-	if (ui->radioButton->isChecked()) 	optional2 = opt1[1];
-	if (ui->radioButton_1->isChecked()) 	optional2 = opt2[1];
-	if (ui->radioButton_2->isChecked()) 	optional2 = opt3[1];
-	if (ui->radioButton_3->isChecked())	optional2 = opt4[1];
-	if (ui->radioButton_4->isChecked()) 	optional2 = opt5[1];
-	if (ui->radioButton_5->isChecked()) 	optional2 = opt6[1];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional2->setText( optional2 );
+	optional2 = scramble_set( optional2, 1 );
 	return ui->optional2->text();
 }
-
 QString ScrambleDialog::scramble3() {
-	if (ui->radioButton->isChecked()) 	optional3 = opt1[2];
-	if (ui->radioButton_1->isChecked()) 	optional3 = opt2[2];
-	if (ui->radioButton_2->isChecked()) 	optional3 = opt3[2];
-	if (ui->radioButton_3->isChecked()) 	optional3 = opt4[2];
-	if (ui->radioButton_4->isChecked()) 	optional3 = opt5[2];
-	if (ui->radioButton_5->isChecked()) 	optional3 = opt6[2];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional3->setText( optional3 );
+	optional3 = scramble_set( optional3, 2 );
 	return ui->optional3->text();
 }
-
 QString ScrambleDialog::scramble4() {
-	if (ui->radioButton->isChecked()) 	optional4 = opt1[3];
-	if (ui->radioButton_1->isChecked()) 	optional4 = opt2[3];
-	if (ui->radioButton_2->isChecked()) 	optional4 = opt3[3];
-	if (ui->radioButton_3->isChecked()) 	optional4 = opt4[3];
-	if (ui->radioButton_4->isChecked()) 	optional4 = opt5[3];
-	if (ui->radioButton_5->isChecked()) 	optional4 = opt6[3];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional4->setText( optional4 );
+	optional4 = scramble_set( optional4, 3 );
 	return ui->optional4->text();
+}
+QString ScrambleDialog::scramble5() {
+	optional5 = scramble_set( optional5, 4 );
+	return ui->optional5->text();
+}
+QString ScrambleDialog::scramble6() {
+	optional6 = scramble_set( optional6, 5 );
+	return ui->optional6->text();
+}
+QString ScrambleDialog::scramble7() {
+	optional7 = scramble_set( optional7, 6 );
+	return ui->optional7->text();
+}
+QString ScrambleDialog::scramble8() {
+	optional8 = scramble_set( optional8, 7 );
+	return ui->optional8->text();
+}
+QString ScrambleDialog::getJsonData( QString url ) {
+	QString attribute;
+	attribute.clear() ;
+    	QEventLoop eventLoop;
+	QNetworkAccessManager mgr;
+ 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+ 	QRegExp r1( "[0-9]{4}" );
+    	if ( r1.exactMatch( url ) ) url += "_01";
+	const QString jsonUrl = "https://www.nhk.or.jp/radioondemand/json/" + url.left(4) + "/bangumi_" + url + ".json";
+	QUrl url_json( jsonUrl );
+	QNetworkRequest req;
+	req.setUrl(url_json);
+	QNetworkReply *reply = mgr.get(req);
+	eventLoop.exec(); 
+	
+	if (reply->error() == QNetworkReply::NoError) {
+		QString strReply = (QString)reply->readAll();
+		QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+		QJsonObject jsonObject = jsonResponse.object();
+		QJsonObject jsonObj = jsonResponse.object();
+    
+		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
+		QJsonObject objx2 = jsonObject[ "main" ].toObject();
+		attribute = objx2[ "program_name" ].toString().replace( "　", " " );
+		if ( !(objx2[ "corner_name" ].toString().isNull()) ) attribute = objx2[ "corner_name" ].toString().replace( "　", " " );
+		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		        attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
+		    }
+		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		        attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
+		    }
+	}
+	return attribute;
 }
 
